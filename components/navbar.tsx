@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { ShoppingBag, Menu, X, Heart } from "lucide-react"
 import { useCart } from "@/components/cart-context"
+import { SearchBar } from "@/components/search-bar"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { CartDrawer } from "@/components/cart-drawer"
@@ -45,6 +46,9 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          <div className="hidden md:block">
+            <SearchBar />
+          </div>
           {/* Cart */}
           <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
             <SheetTrigger asChild>
@@ -81,7 +85,10 @@ export function Navbar() {
                   Cunita Bebe
                 </SheetTitle>
               </SheetHeader>
-              <div className="mt-8 flex flex-col gap-4">
+              <div className="mt-6">
+                <SearchBar />
+              </div>
+              <div className="mt-6 flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
