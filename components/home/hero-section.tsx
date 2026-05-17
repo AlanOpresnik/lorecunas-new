@@ -12,23 +12,23 @@ export function HeroSection() {
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
             Muebles infantiles premium
           </span>
-          <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
             <span className="text-balance">
-              {"Creamos el hogar perfecto para tu bebe"}
+              {"Creamos el lugar perfecto para tu bebe"}
             </span>
           </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground lg:text-lg">
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground text-lg lg:text-xl">
             {"Diseñamos cada mueble con amor y dedicacion, para que los primeros años de tu bebe esten llenos de confort, seguridad y ternura."}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link href="/catalogo">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 ">
+              <Link className="text-lg" href="/catalogo">
                 Ver catalogo
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/nosotros">
+              <Link className="text-lg" href="/nosotros">
                 Nuestra historia
               </Link>
             </Button>
@@ -48,7 +48,7 @@ export function HeroSection() {
             />
           </div>
           {/* Floating badge */}
-          <div className="absolute -bottom-4 -left-4 rounded-xl bg-card p-4 shadow-lg lg:-bottom-6 lg:-left-6">
+          <div className="absolute -bottom-4 -left-4 rounded-xl bg-card p-4 shadow-lg lg:-bottom-6 lg:-left-6 hidden md-block">
             <p className="text-2xl font-bold text-foreground">+500</p>
             <p className="text-xs text-muted-foreground">Familias felices</p>
           </div>

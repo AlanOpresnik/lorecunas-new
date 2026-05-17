@@ -1,34 +1,54 @@
-import { Truck, Shield, Heart, BadgeCheck } from "lucide-react"
-import { benefits } from "@/lib/data"
+import { ConstructionIcon, HammerIcon, LucideTruck, Star } from "lucide-react";
+import React from "react";
 
-const iconMap: Record<string, React.ReactNode> = {
-  truck: <Truck className="h-6 w-6" />,
-  shield: <Shield className="h-6 w-6" />,
-  heart: <Heart className="h-6 w-6" />,
-  badge: <BadgeCheck className="h-6 w-6" />,
-}
 
 export function BenefitsSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {benefits.map((benefit) => (
-          <div
-            key={benefit.title}
-            className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-shadow hover:shadow-md"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              {iconMap[benefit.icon]}
-            </div>
-            <h3 className="font-serif text-base font-bold text-card-foreground">
-              {benefit.title}
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {benefit.description}
-            </p>
-          </div>
-        ))}
+    <div className="flex justify-center gap-8 text-xl mt-5 flex-wrap">
+      <div className=" card p-10 md:border-r-2">
+        <div className="flex font-bold flex-col items-center ">
+          <HammerIcon
+            style={{ width: "50px", height: "50px", opacity: ".6" }}
+            fontSize="large"
+          />
+          <h4 className="font-bold opacity-80 text-center ">
+            FABRICACION{" "}
+            <span className="text-[#FE98CB]  font-bold">ARGENTINA</span>
+          </h4>
+          <p className="opacity-50 text-xs">
+            Compromiso con el trabajo nacional
+          </p>
+        </div>
       </div>
-    </section>
-  )
-}
+      <div className=" card p-10 md:border-r-2">
+        <div className="flex font-bold flex-col items-center">
+          <LucideTruck
+            style={{ width: "50px", height: "50px", opacity: ".6" }}
+            fontSize="large"
+          />
+          <h4 className="font-bold opacity-80">
+            ENVIOS <span className="text-[#FE98CB] font-bold">100%</span>{" "}
+            SEGUROS
+          </h4>
+          <p className="opacity-50 text-xs">
+            A cargo de nuestro sistema de envios
+          </p>
+        </div>
+      </div>
+      <div className="card p-10 ">
+        <div className="flex font-bold flex-col items-center">
+          <Star
+            style={{ width: "50px", height: "50px", opacity: ".6" }}
+            fontSize="large"
+          />
+          <h4 className="font-bold opacity-80">
+            LOS MEJORES {" "}
+            <span className="text-[#FE98CB] font-bold">PRECIOS</span>
+          </h4>
+          <p className="opacity-50 text-xs">Precios mayoristas para vos</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+

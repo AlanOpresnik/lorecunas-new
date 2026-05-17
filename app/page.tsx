@@ -4,13 +4,14 @@ import { CategoriesSection } from "@/components/home/categories-section"
 import { BenefitsSection } from "@/components/home/benefits-section"
 import { TestimonialsSection } from "@/components/home/testimonials-section"
 import { PromoBanner } from "@/components/home/promo-banner"
+import { CarrouselServer } from "@/components/home/carrusek/CarruselServer"
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
       <BenefitsSection />
-      <FeaturedProducts />
+      <CarrouselServer  />
       <CategoriesSection />
       <PromoBanner />
       <TestimonialsSection />

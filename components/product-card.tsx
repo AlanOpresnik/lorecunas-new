@@ -33,10 +33,10 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
       <div className="flex flex-1 flex-col gap-1 p-4">
-        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <p className="text-primary text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {product.category}
         </p>
-        <h3 className="font-serif text-base font-semibold text-card-foreground group-hover:text-primary transition-colors">
+        <h3 className=" text-base font-semibold text-card-foreground group-hover:text-primary transition-colors">
           {product.name}
         </h3>
         <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">

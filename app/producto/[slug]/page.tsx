@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { products, getProductBySlug } from "@/lib/data"
 import { ProductDetail } from "@/components/product-detail"
+import { RelatedProducts } from "@/components/related-products"
 import type { Metadata } from "next"
 
 interface Props {
@@ -28,5 +29,13 @@ export default async function ProductPage({ params }: Props) {
   const product = getProductBySlug(slug)
   if (!product) notFound()
 
-  return <ProductDetail product={product} />
+  return (
+    <>
+    <ProductDetail product={product} />
+    <RelatedProducts
+      currentProductId={product.id}
+      categorySlug={product.categorySlug}
+    />  
+    </>
+  )
 }

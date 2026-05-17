@@ -7,6 +7,7 @@ import { useCart } from "@/components/cart-context"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { CartDrawer } from "@/components/cart-drawer"
+import Image from "next/image"
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -26,10 +27,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Heart className="h-6 w-6 text-primary" fill="currentColor" />
-          <span className="font-serif text-xl font-bold tracking-tight text-foreground lg:text-2xl">
-            Cunita Bebe
-          </span>
+          <Image src="images/logo/logo.png" alt="Logo" width={140} height={140} />
         </Link>
 
         {/* Desktop Nav */}

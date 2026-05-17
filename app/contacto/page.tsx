@@ -1,11 +1,9 @@
+'use client'
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Contacto | Cunita Bebe",
-  description: "Contactanos para consultas, pedidos y asesoramiento personalizado.",
-}
+
 
 export default function ContactoPage() {
   return (
