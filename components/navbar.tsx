@@ -46,7 +46,7 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <div className="hidden md:block">
+          <div className="block">
             <SearchBar />
           </div>
           {/* Cart */}
