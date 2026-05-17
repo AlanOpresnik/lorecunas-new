@@ -14,7 +14,7 @@ export function HeroSection() {
           </span>
           <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
             <span className="text-balance">
-              {"Creamos el lugar perfecto para tu bebe"}
+              Creamos el lugar <span className="text-primary">perfecto</span> para tu bebe
             </span>
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground text-lg lg:text-xl">

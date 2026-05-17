@@ -22,8 +22,8 @@ export function CartDrawer() {
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="flex-1 space-y-4 overflow-y-auto py-4">
+    <div className="flex flex-1 flex-col px-4">
+      <div className="flex-1  space-y-4 overflow-y-auto py-4">
         {items.map((item) => (
           <div
             key={`${item.product.id}-${item.selectedColor}`}

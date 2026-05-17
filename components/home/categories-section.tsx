@@ -21,7 +21,7 @@ export function CategoriesSection() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
           {highlighted.map((cat) => (
             <Link
               key={cat.id}
