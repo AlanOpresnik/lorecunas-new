@@ -1,32 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import { useSearchParams } from "next/navigation"
-import { ProductCard } from "@/components/product-card"
-import { products, categories } from "@/lib/data"
-import { Button } from "@/components/ui/button"
-import { SlidersHorizontal, X } from "lucide-react"
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { ProductCard } from "@/components/product-card";
+import { products, categories } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import { SlidersHorizontal, X } from "lucide-react";
 
 export function CatalogContent() {
-  const searchParams = useSearchParams()
-  const initialCategory = searchParams.get("categoria") || ""
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get("categoria") || "";
 
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory)
-  const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc">("default")
-  const [showFilters, setShowFilters] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc">(
+    "default",
+  );
+  const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
-    let result = [...products]
+    let result = [...products];
     if (selectedCategory) {
-      result = result.filter((p) => p.categorySlug === selectedCategory)
+      result = result.filter((p) => p.categorySlug === selectedCategory);
+      setTimeout(() => {
+        setShowFilters(false);
+      }, 200);
+    } else {
+      setTimeout(() => {
+        setShowFilters(false);
+      }, 200);
     }
     if (sortBy === "price-asc") {
-      result.sort((a, b) => a.price - b.price)
+      result.sort((a, b) => a.price - b.price);
     } else if (sortBy === "price-desc") {
-      result.sort((a, b) => b.price - a.price)
+      result.sort((a, b) => b.price - a.price);
     }
-    return result
-  }, [selectedCategory, sortBy])
+    return result;
+  }, [selectedCategory, sortBy]);
 
   return (
     <div>
@@ -67,7 +76,9 @@ export function CatalogContent() {
         >
           <div className="sticky top-24 rounded-xl border border-border bg-card p-5">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-serif text-sm font-bold text-card-foreground">Categorias</h3>
+              <h3 className="font-serif text-sm font-bold text-card-foreground">
+                Categorias
+              </h3>
               {selectedCategory && (
                 <button
                   onClick={() => setSelectedCategory("")}
@@ -129,5 +140,5 @@ export function CatalogContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
