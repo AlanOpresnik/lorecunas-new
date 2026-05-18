@@ -1,12 +1,13 @@
-import Link from "next/link"
-import { ChevronRight, Ruler, ArrowLeft } from "lucide-react"
-import { formatPrice } from "@/lib/data"
-import { type Product } from "@/lib/types"
-import ProductDetailsImageSelect from "./product-details-image-select"
-import ProductDetailActionsButton from "./Product-detail-actions-button"
+import Link from "next/link";
+import { ChevronRight, Ruler, ArrowLeft } from "lucide-react";
+import { formatPrice } from "@/lib/data";
+import { type Product } from "@/lib/types";
+import ProductDetailsImageSelect from "./product-details-image-select";
+import ProductDetailActionsButton from "./Product-detail-actions-button";
+import ProductDetailCaracteristics from "./Product-detail-caracteristics";
 
 interface ProductDetailProps {
-  product: Product
+  product: Product;
 }
 
 export function ProductDetail({ product }: ProductDetailProps) {
@@ -14,9 +15,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-12">
       {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-foreground">Inicio</Link>
+        <Link href="/" className="hover:text-foreground">
+          Inicio
+        </Link>
         <ChevronRight className="h-3 w-3" />
-        <Link href="/catalogo" className="hover:text-foreground">Catalogo</Link>
+        <Link href="/catalogo" className="hover:text-foreground">
+          Catalogo
+        </Link>
         <ChevronRight className="h-3 w-3" />
         <Link
           href={`/catalogo?categoria=${product.categorySlug}`}
@@ -30,7 +35,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Images */}
-     <ProductDetailsImageSelect product={product} />
+        <ProductDetailsImageSelect product={product} />
 
         {/* Info */}
         <div className="flex flex-col">
@@ -57,17 +62,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </p>
 
           {/* Dimensions */}
-          <div className="mt-6 flex items-center gap-3 rounded-lg bg-secondary p-4">
-            <Ruler className="h-5 w-5 text-primary" />
-            <div>
-              <p className="text-xs font-medium text-muted-foreground">Medidas</p>
-              <p className="text-sm font-medium text-foreground">{product.dimensions}</p>
-            </div>
+          <div className="grid grid-cols-2 gap-2">
+            {product.caracteristics.map((caracteristic) => (
+              <ProductDetailCaracteristics caracteristic={caracteristic} />
+            ))}
           </div>
 
           {/* Colors */}
-          
-        
 
           {/* Stock */}
           <p className="mt-4 text-sm text-muted-foreground">
@@ -77,7 +78,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </p>
 
           {/* Actions */}
-         <ProductDetailActionsButton product={product} />
+          <ProductDetailActionsButton product={product} />
 
           <Link
             href="/catalogo"
@@ -89,5 +90,5 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

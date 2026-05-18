@@ -1,34 +1,45 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { ShoppingBag, Menu, X, Heart } from "lucide-react"
-import { useCart } from "@/components/cart-context"
-import { SearchBar } from "@/components/search-bar"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { CartDrawer } from "@/components/cart-drawer"
-import Image from "next/image"
+import Link from "next/link";
+import { useState } from "react";
+import { ShoppingBag, Menu, X, Heart } from "lucide-react";
+import { useCart } from "@/components/cart-context";
+import { SearchBar } from "@/components/search-bar";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { CartDrawer } from "@/components/cart-drawer";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/catalogo", label: "Catalogo" },
   { href: "/categorias", label: "Categorias" },
+  { href: "/productos/home", label: "Lorecunas Home" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/contacto", label: "Contacto" },
   { href: "/preguntas-frecuentes", label: "FAQ" },
-]
+];
 
 export function Navbar() {
-  const { totalItems, isCartOpen, setIsCartOpen } = useCart()
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { totalItems, isCartOpen, setIsCartOpen } = useCart();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="images/logo/logo.png" alt="Logo" width={140} height={140} />
+          <Image
+            src="images/logo/logo.png"
+            alt="Logo"
+            width={140}
+            height={140}
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -105,5 +116,5 @@ export function Navbar() {
         </div>
       </nav>
     </header>
-  )
+  );
 }
