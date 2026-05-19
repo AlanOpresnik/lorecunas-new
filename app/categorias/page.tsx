@@ -1,14 +1,14 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { categories } from "@/lib/data"
-import type { Metadata } from "next"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { categories } from "@/lib/data";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Categorias | Cunita Bebe",
   description:
     "Explora nuestras categorias de muebles infantiles: cunas funcionales, cunas estandar, roperos, comodas, decoracion y mas.",
-}
+};
 
 export default function CategoriasPage() {
   return (
@@ -22,7 +22,7 @@ export default function CategoriasPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {categories.map((cat) => (
           <Link
             key={cat.id}
@@ -54,5 +54,5 @@ export default function CategoriasPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
