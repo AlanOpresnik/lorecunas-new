@@ -7,15 +7,7 @@ import { Footer } from '@/components/footer'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 import './globals.css'
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-dm-sans',
-})
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-})
 
 export const metadata: Metadata = {
   title: 'Cunita Bebe | Muebles Infantiles Premium',
@@ -29,13 +21,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`bg-background ${dmSans.variable} ${playfair.variable}`}>
+    <html lang="es" className={`bg-background`}>
       <body className="font-sans antialiased">
         <CartProvider>
-          <Navbar />
-          <main className="min-h-screen">
+          
             {children}
-          </main>
           <Footer />
           <WhatsAppButton />
         </CartProvider>

@@ -43,3 +43,45 @@ export interface Testimonial {
   rating: number;
   date: string;
 }
+
+
+export type ProductStatus = 'active' | 'draft'
+
+export type ProductCategory =
+  | 'Cunas'
+  | 'Colchones'
+  | 'Cómodas'
+  | 'Textiles'
+  | 'Decoración'
+  | 'Muebles'
+
+export const PRODUCT_CATEGORIES: ProductCategory[] = [
+  'Cunas',
+  'Colchones',
+  'Cómodas',
+  'Textiles',
+  'Decoración',
+  'Muebles',
+]
+
+
+
+/**
+ * Payment statuses mirror the Mercado Pago payment API `status` field.
+ * See: https://www.mercadopago.com.ar/developers -> payment.status
+ */
+export type PaymentStatus = 'approved' | 'pending' | 'rejected'
+
+export type Order = {
+  id: string
+  reference: string
+  customerName: string
+  customerEmail: string
+  items: number
+  total: number
+  status: PaymentStatus
+  /** Mercado Pago payment id (payment.id) */
+  mpPaymentId: string
+  paymentMethod: string
+  createdAt: string
+}
