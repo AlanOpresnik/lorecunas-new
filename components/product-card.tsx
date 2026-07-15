@@ -1,16 +1,16 @@
-import Image from "next/image"
-import Link from "next/link"
-import { formatPrice } from "@/lib/data"
-import { type Product } from "@/lib/types"
+import Image from "next/image";
+import Link from "next/link";
+import { formatPrice } from "@/lib/data";
+import { type Product } from "@/lib/types";
 
 interface ProductCardProps {
-  product: Product
+  product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
-      href={`/producto/${product.slug}`}
+      href={`/producto/${product.slug}/${product._id}`}
       className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-shadow hover:shadow-lg"
     >
       <div className="relative aspect-square overflow-hidden bg-secondary">
@@ -28,7 +28,13 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
         {product.originalPrice && (
           <span className="absolute right-3 top-3 rounded-full bg-destructive/10 px-3 py-1 text-xs font-semibold text-destructive">
-            -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+            -
+            {Math.round(
+              ((product.originalPrice - product.price) /
+                product.originalPrice) *
+                100,
+            )}
+            %
           </span>
         )}
       </div>
@@ -43,7 +49,9 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.shortDescription}
         </p>
         <div className="mt-auto flex items-baseline gap-2 pt-3">
-          <span className="text-lg font-bold text-foreground">{formatPrice(product.price)}</span>
+          <span className="text-lg font-bold text-foreground">
+            {formatPrice(product.price)}
+          </span>
           {product.originalPrice && (
             <span className="text-sm text-muted-foreground line-through">
               {formatPrice(product.originalPrice)}
@@ -52,5 +60,5 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

@@ -133,7 +133,7 @@ export function CatalogContent() {
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product._id} product={product} />
               ))}
             </div>
           )}

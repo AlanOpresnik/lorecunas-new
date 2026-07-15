@@ -12,7 +12,7 @@ export default function ProductDetailCaracteristics({ caracteristic }: Props) {
       <InfoIcon className="h-5 w-5 text-primary" />
       <div>
         <p className="text-sm font-medium text-foreground">
-          {caracteristic.text}
+          {caracteristic.title} <span>{caracteristic.value}</span>
         </p>
       </div>
     </div>

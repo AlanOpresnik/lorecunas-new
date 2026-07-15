@@ -77,7 +77,7 @@ export const categories: Category[] = [
 
 export const products: Product[] = [
   {
-    id: "1",
+    _id: "1",
     name: "Cuna Funcional Valentina",
     slug: "cuna-funcional-valentina",
     price: 289000,
@@ -102,7 +102,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "2",
+    _id: "2",
     name: "Cuna Funcional Aurora",
     slug: "cuna-funcional-aurora",
     price: 310000,
@@ -126,7 +126,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "3",
+    _id: "3",
     name: "Cuna Estandar Lucia",
     slug: "cuna-estandar-lucia",
     price: 175000,
@@ -150,7 +150,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "4",
+    _id: "4",
     name: "Ropero Infantil Emma",
     slug: "ropero-infantil-emma",
     price: 245000,
@@ -174,7 +174,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "5",
+    _id: "5",
     name: "Chifonier Sofi",
     slug: "chifonier-sofi",
     price: 198000,
@@ -198,7 +198,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "6",
+    _id: "6",
     name: "Comoda con Cambiador Mia",
     slug: "comoda-cambiador-mia",
     price: 215000,
@@ -285,8 +285,38 @@ export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
-export function getFeaturedProducts(): Product[] {
-  return products.filter((p) => p.featured);
+export async function getFeaturedProducts(): Promise<Product[]> {
+  try {
+    const res = await fetch("http://localhost:8080/api/products/featured", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching featured products:", error);
+    return [];
+  }
+}
+
+export async function getProductById(id: string): Promise<Product | undefined> {
+  try {
+    const res = await fetch(`http://localhost:8080/api/products/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching product by id:", error);
+    return undefined;
+  }
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {

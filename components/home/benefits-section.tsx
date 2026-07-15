@@ -12,7 +12,7 @@ export function BenefitsSection() {
             fontSize="large"
           />
           <h4 className="font-bold opacity-80 text-center ">
-            FABRICACION{" "}
+            FABRICACION{" "}``
             <span className="text-[#FE98CB]  font-bold">ARGENTINA</span>
           </h4>
           <p className="opacity-50 text-xs">
