@@ -68,14 +68,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
             ))}
           </div>
 
-          {/* Colors */}
-
           {/* Stock */}
-          <p className="mt-4 text-sm text-muted-foreground">
-            {product.stock > 0
-              ? `Stock disponible: ${product.stock} unidades`
-              : "Sin stock temporalmente"}
-          </p>
+          <p className="mt-4 text-sm text-muted-foreground">Stock disponible</p>
 
           {/* Actions */}
           <ProductDetailActionsButton product={product} />

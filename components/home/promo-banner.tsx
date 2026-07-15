@@ -1,7 +1,7 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function PromoBanner() {
   return (
@@ -21,13 +21,18 @@ export function PromoBanner() {
           <span className="text-xs font-semibold uppercase tracking-widest text-white/80">
             Oferta especial
           </span>
-          <h2 className="font-serif text-2xl font-bold text-white md:text-4xl lg:text-5xl text-balance">
+          <h2 className="font-serif mt-8 text-xl font-bold text-white md:text-4xl lg:text-5xl text-balance">
             Arma la habitacion completa con descuento
           </h2>
           <p className="max-w-md text-sm text-white/90 md:text-base">
-            Combina cuna + comoda + ropero y obtiene un precio especial. Consulta por WhatsApp.
+            Combina cuna + comoda + ropero y obtiene un precio especial.
+            Consulta por WhatsApp.
           </p>
-          <Button asChild size="lg" className="mt-2 bg-white text-foreground hover:bg-white/90">
+          <Button
+            asChild
+            size="lg"
+            className="mt-2 bg-white text-foreground hover:bg-white/90"
+          >
             <Link href="/contacto" className="flex items-center gap-2">
               Consultar ahora
               <ArrowRight className="h-4 w-4" />
@@ -36,5 +41,5 @@ export function PromoBanner() {
         </div>
       </div>
     </section>
-  )
+  );
 }

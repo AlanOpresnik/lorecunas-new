@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Heart, Instagram, Facebook, Mail } from "lucide-react"
+import Link from "next/link";
+import { Heart, Instagram, Facebook, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,7 +11,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Heart className="h-5 w-5 text-primary" fill="currentColor" />
               <span className="font-serif text-xl font-bold text-foreground">
-                Cunita Bebe
+                Lore Cunas
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -54,22 +54,34 @@ export function Footer() {
             </h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/catalogo" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/catalogo"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Catalogo completo
                 </Link>
               </li>
               <li>
-                <Link href="/categorias" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/categorias"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Categorias
                 </Link>
               </li>
               <li>
-                <Link href="/catalogo?categoria=cunas-funcionales" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/catalogo?categoria=cunas-funcionales"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Cunas Funcionales
                 </Link>
               </li>
               <li>
-                <Link href="/catalogo?categoria=cunas-estandar" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/catalogo?categoria=cunas-estandar"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Cunas Estandar
                 </Link>
               </li>
@@ -83,17 +95,26 @@ export function Footer() {
             </h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/nosotros" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/nosotros"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Nosotros
                 </Link>
               </li>
               <li>
-                <Link href="/contacto" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/contacto"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Contacto
                 </Link>
               </li>
               <li>
-                <Link href="/preguntas-frecuentes" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/preguntas-frecuentes"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
                   Preguntas frecuentes
                 </Link>
               </li>
@@ -109,18 +130,19 @@ export function Footer() {
               <li>Buenos Aires, Argentina</li>
               <li>Tel: +54 11 1234-5678</li>
               <li>info@cunitabebe.com</li>
-              <li className="pt-1">
-                Lun a Vie: 9:00 - 18:00
-              </li>
+              <li className="pt-1">Lun a Vie: 9:00 - 18:00</li>
               <li>Sab: 10:00 - 14:00</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Cunita Bebe. Todos los derechos reservados.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Cunita Bebe. Todos los derechos
+            reservados.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

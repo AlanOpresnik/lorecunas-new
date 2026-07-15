@@ -1,11 +1,12 @@
-import { ProductCard } from "@/components/product-card"
-import { getFeaturedProducts } from "@/lib/data"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import Carrousel from "./carrousel"
+import { ProductCard } from "@/components/product-card";
+import { getFeaturedProducts } from "@/lib/data";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Carrousel from "./carrousel";
+import { Suspense } from "react";
 
-export function CarrouselServer() {
-  const featured = getFeaturedProducts()
+export async function CarrouselServer() {
+  const featured = await getFeaturedProducts();
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
@@ -17,11 +18,13 @@ export function CarrouselServer() {
           Productos Destacados
         </h2>
         <p className="mt-2 max-w-lg text-muted-foreground">
-          Descubri los favoritos de nuestras clientas, muebles que combinan diseño, calidad y funcionalidad.
+          Descubri los favoritos de nuestras clientas, muebles que combinan
+          diseño, calidad y funcionalidad.
         </p>
       </div>
-
-      <Carrousel />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <Carrousel products={featured} />
+      </Suspense>
 
       <div className="mt-10 flex justify-center">
         <Link
@@ -33,5 +36,5 @@ export function CarrouselServer() {
         </Link>
       </div>
     </section>
-  )
+  );
 }

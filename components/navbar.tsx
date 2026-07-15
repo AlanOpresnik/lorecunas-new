@@ -35,10 +35,12 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="images/logo/logo.png"
+            src="/images/logo/logo.png"
             alt="Logo"
+            priority
             width={140}
             height={140}
+            className="h-auto w-[140px]"
           />
         </Link>
 
@@ -89,7 +91,7 @@ export function Navbar() {
                 <span className="sr-only">Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-72">
+            <SheetContent side="left" className="w-72 p-4">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2 font-serif">
                   <Heart className="h-5 w-5 text-primary" fill="currentColor" />

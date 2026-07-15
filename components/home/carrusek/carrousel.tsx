@@ -1,54 +1,54 @@
-'use client'
+"use client";
 
-import { useCallback, useEffect, useState } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
-import { products } from '@/lib/data'
-import { ProductCard } from '@/components/product-card'
+import { ProductCard } from "@/components/product-card";
+import { Product } from "@/lib/types";
 
-export default function Carousel() {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+export default function Carousel({ products }: { products: Product[] }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: 'start',
+    align: "start",
     skipSnaps: false,
     dragFree: false,
-    slidesToScroll: 1
-  })
+    slidesToScroll: 1,
+  });
 
   const onInit = useCallback(() => {
-    if (!emblaApi) return
+    if (!emblaApi) return;
 
-    setScrollSnaps(emblaApi.scrollSnapList())
-  }, [emblaApi])
+    setScrollSnaps(emblaApi.scrollSnapList());
+  }, [emblaApi]);
 
   const onSelect = useCallback(() => {
-    if (!emblaApi) return
+    if (!emblaApi) return;
 
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   const scrollTo = useCallback(
     (index: number) => {
-      if (!emblaApi) return
+      if (!emblaApi) return;
 
-      emblaApi.scrollTo(index)
+      emblaApi.scrollTo(index);
     },
-    [emblaApi]
-  )
+    [emblaApi],
+  );
 
   useEffect(() => {
-    if (!emblaApi) return
+    if (!emblaApi) return;
 
-    onInit()
-    onSelect()
+    onInit();
+    onSelect();
 
-    emblaApi.on('reInit', onInit)
-    emblaApi.on('reInit', onSelect)
-    emblaApi.on('select', onSelect)
-  }, [emblaApi, onInit, onSelect])
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onInit, onSelect]);
 
   return (
     <div className="w-full">
@@ -56,7 +56,7 @@ export default function Carousel() {
         <div className="flex">
           {products.map((product) => (
             <div
-              key={product.id}
+              key={product._id}
               className="
                 min-w-0
                 p-2
@@ -72,32 +72,32 @@ export default function Carousel() {
         </div>
       </div>
 
-     {/* DOTS */}
-<div className="mt-6 flex items-center justify-center gap-2">
-  {scrollSnaps
-    .slice(
-      Math.max(0, selectedIndex - 1),
-      Math.min(scrollSnaps.length, selectedIndex + 2)
-    )
-    .map((_, i) => {
-      const realIndex = Math.max(0, selectedIndex - 1) + i
+      {/* DOTS */}
+      <div className="mt-6 flex items-center justify-center gap-2">
+        {scrollSnaps
+          .slice(
+            Math.max(0, selectedIndex - 1),
+            Math.min(scrollSnaps.length, selectedIndex + 2),
+          )
+          .map((_, i) => {
+            const realIndex = Math.max(0, selectedIndex - 1) + i;
 
-      return (
-        <button
-          key={realIndex}
-          onClick={() => scrollTo(realIndex)}
-          className={`
+            return (
+              <button
+                key={realIndex}
+                onClick={() => scrollTo(realIndex)}
+                className={`
             h-2.5 rounded-full transition-all duration-300
             ${
               realIndex === selectedIndex
-                ? 'bg-primary w-6'
-                : 'bg-gray-300 w-2.5'
+                ? "bg-primary w-6"
+                : "bg-gray-300 w-2.5"
             }
           `}
-        />
-      )
-    })}
-</div>
+              />
+            );
+          })}
+      </div>
     </div>
-  )
+  );
 }
