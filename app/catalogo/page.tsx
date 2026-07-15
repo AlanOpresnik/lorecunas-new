@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import { CatalogContent } from "@/components/catalog-content"
 import type { Metadata } from "next"
+import { api } from "@/lib/api"
 
 export const metadata: Metadata = {
   title: "Catalogo | Cunita Bebe",
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
     "Explora nuestro catalogo completo de muebles infantiles premium. Cunas, roperos, comodas y mas.",
 }
 
-export default function CatalogoPage() {
+export default async function CatalogoPage() {
+  const catalogContent = await api.getProducts()
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
       <div className="mb-10 text-center">
@@ -21,7 +23,7 @@ export default function CatalogoPage() {
       </div>
 
       <Suspense fallback={<div className="py-20 text-center text-muted-foreground">Cargando catalogo...</div>}>
-        <CatalogContent />
+        <CatalogContent products={catalogContent} />
       </Suspense>
     </div>
   )

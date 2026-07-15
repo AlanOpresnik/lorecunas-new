@@ -64,7 +64,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
           {/* Dimensions */}
           <div className="grid grid-cols-2 gap-2">
             {product.caracteristics.map((caracteristic) => (
-              <ProductDetailCaracteristics caracteristic={caracteristic} />
+              <div key={caracteristic.title}>
+                <ProductDetailCaracteristics caracteristic={caracteristic} />
+              </div>
             ))}
           </div>
 

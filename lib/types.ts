@@ -2,6 +2,7 @@ export interface Product {
   _id: string;
   name: string;
   slug: string;
+  status: ProductStatus;
   price: number;
   originalPrice?: number;
   description: string;
@@ -13,6 +14,8 @@ export interface Product {
   colors: string[];
   featured: boolean;
   isNew: boolean;
+  createdAt: string;
+  updatedAt: string;
   stock: number;
 }
 
@@ -45,7 +48,7 @@ export interface Testimonial {
 }
 
 
-export type ProductStatus = 'active' | 'draft'
+export type ProductStatus = 'active' | 'inactive' | 'draft'
 
 export type ProductCategory =
   | 'Cunas'

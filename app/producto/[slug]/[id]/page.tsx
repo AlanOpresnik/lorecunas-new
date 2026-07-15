@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ProductDetail } from "@/components/productDetail/product-detail";
 import { RelatedProducts } from "@/components/productDetail/related-products";
 import TutorialVideoPlayer from "@/components/productDetail/VideoPlayer/TutorialVideoPlayer";
-import { getProductById } from "@/lib/data";
+import { api } from "@/lib/api";
 
 interface Props {
   params: Promise<{ slug: string; id: string }>;
@@ -12,7 +12,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const product = await getProductById(id);
+  const product = await api.getProductById(id);
   if (!product) return { title: "Producto no encontrado" };
   return {
     title: `${product.name} | Cunita Bebe`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Props) {
   const { id } = await params;
-  const product = await getProductById(id);
+  const product = await api.getProductById(id);
   if (!product) notFound();
 
   return (
@@ -30,7 +30,6 @@ export default async function ProductPage({ params }: Props) {
       <ProductDetail product={product} />
       <TutorialVideoPlayer />
       <RelatedProducts
-        currentProductId={product._id}
         categorySlug={product.categorySlug}
       />
     </>

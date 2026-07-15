@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useState, useTransition } from 'react'
-import Image from 'next/image'
-import { MoreHorizontal, Pencil, Trash2, PackageOpen } from 'lucide-react'
-import { toast } from 'sonner'
-import type { Product } from '@/lib/types'
+import { useState, useTransition } from "react";
+import Image from "next/image";
+import { MoreHorizontal, Pencil, Trash2, PackageOpen } from "lucide-react";
+import { toast } from "sonner";
+import type { Product } from "@/lib/types";
 import {
   Table,
   TableBody,
@@ -12,16 +12,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,28 +31,27 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog'
-import { deleteProductAction } from '../../action/product'
-import { formatCurrency, formatDate } from '@/lib/format'
-import { ProductFormDialog } from './NewProductForm'
+} from "@/components/ui/alert-dialog";
+import { formatCurrency, formatDate } from "@/lib/format";
+import { ProductFormDialog } from "./ProductFormDialog";
 
 export function ProductsTable({ products }: { products: Product[] }) {
-  const [editing, setEditing] = useState<Product | null>(null)
-  const [deleting, setDeleting] = useState<Product | null>(null)
-  const [isPending, startTransition] = useTransition()
+  const [editing, setEditing] = useState<Product | null>(null);
+  const [deleting, setDeleting] = useState<Product | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   function handleDelete() {
-    if (!deleting) return
-    const target = deleting
+    if (!deleting) return;
+    const target = deleting;
     startTransition(async () => {
-      const res = await deleteProductAction(target.id)
-      if (res.ok) {
-        toast.success(res.message ?? 'Producto eliminado.')
-      } else {
-        toast.error(res.message ?? 'No se pudo eliminar.')
-      }
-      setDeleting(null)
-    })
+      // const res = await deleteProductAction(target._id);
+      // if (res.ok) {
+      //   toast.success(res.message ?? "Producto eliminado.");
+      // } else {
+      //   toast.error(res.message ?? "No se pudo eliminar.");
+      // }
+      setDeleting(null);
+    });
   }
 
   return (
@@ -72,26 +71,31 @@ export function ProductsTable({ products }: { products: Product[] }) {
           </TableHeader>
           <TableBody>
             {products.map((product) => (
-              <TableRow key={product.id}>
+              <TableRow key={product._id}>
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <div className="relative size-11 shrink-0 overflow-hidden rounded-lg bg-muted">
+                    <div className="relative size-24 shrink-0 overflow-hidden rounded-xl bg-muted">
                       <Image
-                        src={product.image || '/products/placeholder.png'}
+                        src={product.images[0] || "/products/placeholder.png"}
                         alt={product.name}
                         fill
-                        sizes="44px"
-                        className="object-cover"
+                        className="object-cover "
                       />
                     </div>
                     <div className="flex min-w-0 flex-col">
-                      <span className="truncate font-medium text-foreground">{product.name}</span>
-                      <span className="truncate text-xs text-muted-foreground">{product.id}</span>
+                      <span className="truncate font-medium text-foreground">
+                        {product.name}
+                      </span>
+                      <span className="truncate text-xs text-muted-foreground">
+                        {product._id}
+                      </span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm text-muted-foreground">{product.category}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {product.category}
+                  </span>
                 </TableCell>
                 <TableCell className="text-right font-medium text-foreground">
                   {formatCurrency(product.price)}
@@ -100,18 +104,22 @@ export function ProductsTable({ products }: { products: Product[] }) {
                   <span
                     className={
                       product.stock === 0
-                        ? 'font-medium text-destructive'
+                        ? "font-medium text-destructive"
                         : product.stock <= 10
-                          ? 'font-medium text-amber-600'
-                          : 'text-foreground'
+                          ? "font-medium text-amber-600"
+                          : "text-foreground"
                     }
                   >
                     {product.stock}
                   </span>
                 </TableCell>
                 <TableCell>
-                  <Badge variant={product.status === 'active' ? 'default' : 'secondary'}>
-                    {product.status === 'active' ? 'Activo' : 'Borrador'}
+                  <Badge
+                    variant={
+                      product.status === "active" ? "default" : "secondary"
+                    }
+                  >
+                    {product.status === "active" ? "Activo" : "Inactivo"}
                   </Badge>
                 </TableCell>
                 <TableCell className="hidden text-sm text-muted-foreground md:table-cell">
@@ -119,13 +127,11 @@ export function ProductsTable({ products }: { products: Product[] }) {
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger
-                      render={
-                        <Button variant="ghost" size="icon" aria-label="Acciones">
-                          <MoreHorizontal />
-                        </Button>
-                      }
-                    />
+                    <DropdownMenuTrigger>
+                      <Button variant="ghost" size="icon" aria-label="Acciones">
+                        <MoreHorizontal />
+                      </Button>
+                    </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuGroup>
                         <DropdownMenuItem onClick={() => setEditing(product)}>
@@ -169,21 +175,24 @@ export function ProductsTable({ products }: { products: Product[] }) {
         />
       ) : null}
 
-      <AlertDialog open={Boolean(deleting)} onOpenChange={(o) => !o && setDeleting(null)}>
+      <AlertDialog
+        open={Boolean(deleting)}
+        onOpenChange={(o) => !o && setDeleting(null)}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>¿Eliminar producto?</AlertDialogTitle>
             <AlertDialogDescription>
-              Se eliminará <strong>{deleting?.name}</strong> del catálogo. Esta acción no se puede
-              deshacer.
+              Se eliminará <strong>{deleting?.name}</strong> del catálogo. Esta
+              acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel disabled={isPending}>Cancelar</AlertDialogCancel>
             <AlertDialogAction
               onClick={(e) => {
-                e.preventDefault()
-                handleDelete()
+                e.preventDefault();
+                handleDelete();
               }}
               disabled={isPending}
               className="bg-destructive text-white hover:bg-destructive/90"
@@ -194,5 +203,5 @@ export function ProductsTable({ products }: { products: Product[] }) {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  )
+  );
 }

@@ -17,9 +17,9 @@ import {
 } from '@/components/ui/sidebar'
 
 const navItems = [
-  { title: 'Resumen', href: '/', icon: LayoutDashboard },
-  { title: 'Productos', href: '/productos', icon: Package },
-  { title: 'Pedidos', href: '/ordenes', icon: ShoppingBag },
+  { title: 'Resumen', href: '/admin', icon: LayoutDashboard },
+  { title: 'Productos', href: '/admin/products', icon: Package },
+  { title: 'Pedidos', href: '/admin/ordenes', icon: ShoppingBag },
 ]
 
 const secondaryItems = [

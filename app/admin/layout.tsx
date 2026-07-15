@@ -32,15 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      className={` !${geistSans.variable} !${geistMono.variable}  bg-background`}
-    >
-      <body className="font-sans antialiased">
-        {children}
-        <Toaster />
-        {process.env.NODE_ENV === "production" && <Analytics />}
-      </body>
-    </html>
+    <div>
+      {children}
+      <Toaster />
+      {process.env.NODE_ENV === "production" && <Analytics />}
+    </div>
   );
 }

@@ -1,16 +1,13 @@
-import { getProductsByCategory } from "@/lib/data"
 import { ProductCard } from "@/components/product-card"
+import { api } from "@/lib/api"
 
-export function RelatedProducts({
-  currentProductId,
+export async function RelatedProducts({
   categorySlug,
 }: {
-  currentProductId: string
   categorySlug: string
 }) {
-  const relatedProducts = getProductsByCategory(categorySlug)
-    .filter((product) => product.id !== currentProductId)
-    .slice(0, 4)
+  const relatedProducts = await api.getProductsByCategory(categorySlug)
+
 
   if (relatedProducts.length === 0) {
     return null
@@ -23,7 +20,7 @@ export function RelatedProducts({
       </h2>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
         {relatedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </section>

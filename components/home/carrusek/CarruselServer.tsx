@@ -1,12 +1,12 @@
 import { ProductCard } from "@/components/product-card";
-import { getFeaturedProducts } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Carrousel from "./carrousel";
 import { Suspense } from "react";
+import { api } from "@/lib/api";
 
 export async function CarrouselServer() {
-  const featured = await getFeaturedProducts();
+  const featured = await api.getFeaturedProducts();
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">

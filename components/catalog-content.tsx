@@ -3,11 +3,12 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { ProductCard } from "@/components/product-card";
-import { products, categories } from "@/lib/data";
+import { categories } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal, X } from "lucide-react";
+import { Product } from "@/lib/types";
 
-export function CatalogContent() {
+export function CatalogContent({ products }: { products: Product[] }) {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("categoria") || "";
 

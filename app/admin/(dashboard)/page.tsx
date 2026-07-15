@@ -17,19 +17,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { getOrders, getOrderStats } from "@/lib/data";
-import { getProducts, getProductStats } from "@/lib/products";
 import { DashboardHeader } from "../components/Dashboard/DashboardHeader";
 import { StatCard } from "../components/StatCard/StatCard";
 import { formatCurrency, formatDateTime } from "@/lib/format";
 import { PaymentStatusBadge } from "../components/PaymentsBadge/PaymentsBadge";
 import { WeeklySales } from "../components/WeeklySales/WeeklySales";
+import { api } from "@/lib/api";
 
 export default async function OverviewPage() {
   const [orderStats, productStats, orders, products] = await Promise.all([
     getOrderStats(),
-    getProductStats(),
+    api.getStats(),
     getOrders(),
-    getProducts(),
+    api.getProducts(),
   ]);
 
   const recentOrders = orders.slice(0, 5);
@@ -61,16 +61,16 @@ export default async function OverviewPage() {
           />
           <StatCard
             label="Productos activos"
-            value={String(productStats.active)}
-            hint={`${productStats.total} en el catálogo`}
+            value={String(productStats.activeProducts)}
+            hint={`${productStats.totalProducts} en el catálogo`}
             icon={Package}
           />
           <StatCard
             label="Sin stock"
-            value={String(productStats.outOfStock)}
+            value={String(productStats.productsOutOfStock)}
             hint="Productos agotados"
             icon={AlertTriangle}
-            tone={productStats.outOfStock > 0 ? "warning" : "default"}
+            tone={productStats.productsOutOfStock > 0 ? "warning" : "default"}
           />
         </div>
 
@@ -137,7 +137,7 @@ export default async function OverviewPage() {
               <CardContent className="flex flex-col gap-3">
                 {lowStock.map((product) => (
                   <div
-                    key={product.id}
+                    key={product._id}
                     className="flex items-center justify-between gap-3"
                   >
                     <span className="truncate text-sm text-foreground">

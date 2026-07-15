@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { ProductFormDialog } from './NewProductForm'
+import { ProductFormDialog } from './ProductFormDialog'
 
 export function NewProductButton() {
   const [open, setOpen] = useState(false)
