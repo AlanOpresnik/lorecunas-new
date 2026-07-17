@@ -1,7 +1,7 @@
 import { Stats } from "./interfaces/Stats";
 import { Product, ProductCategory } from "./types";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const api = {
   async getProducts(): Promise<Product[]> {
