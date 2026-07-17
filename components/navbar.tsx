@@ -19,7 +19,6 @@ import Image from "next/image";
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/catalogo", label: "Catalogo" },
-  { href: "/categorias", label: "Categorias" },
   { href: "/productos/home", label: "Lorecunas Home" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/preguntas-frecuentes", label: "FAQ" },

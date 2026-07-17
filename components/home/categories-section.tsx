@@ -1,9 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import { categories } from "@/lib/data"
 import { ArrowRight } from "lucide-react"
+import { api } from "@/lib/api"
 
-export function CategoriesSection() {
+export async function CategoriesSection() {
+  const categories = await api.getCategorys()
   const highlighted = categories.slice(0, 4)
 
   return (
@@ -24,8 +25,8 @@ export function CategoriesSection() {
         <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
           {highlighted.map((cat) => (
             <Link
-              key={cat.id}
-              href={`/catalogo?categoria=${cat.slug}`}
+              key={cat._id}
+              href={`/catalogo?categoria=${cat.name}`}
               className="group relative overflow-hidden rounded-xl"
             >
               <div className="relative aspect-[3/4] overflow-hidden">
@@ -42,9 +43,7 @@ export function CategoriesSection() {
                 <h3 className="font-serif text-lg font-bold text-white">
                   {cat.name}
                 </h3>
-                <p className="mt-1 text-xs text-white/80">
-                  {cat.productCount} productos
-                </p>
+
                 <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-white/90 transition-colors group-hover:text-white">
                   Explorar
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />

@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { ProductFormDialog } from "./ProductFormDialog";
+import { deleteProductAction } from "../../action/product";
 
 export function ProductsTable({ products }: { products: Product[] }) {
   const [editing, setEditing] = useState<Product | null>(null);
@@ -42,15 +43,20 @@ export function ProductsTable({ products }: { products: Product[] }) {
 
   function handleDelete() {
     if (!deleting) return;
+
     const target = deleting;
     startTransition(async () => {
-      // const res = await deleteProductAction(target._id);
-      // if (res.ok) {
-      //   toast.success(res.message ?? "Producto eliminado.");
-      // } else {
-      //   toast.error(res.message ?? "No se pudo eliminar.");
-      // }
-      setDeleting(null);
+      const formData = new FormData();
+      formData.append("productId", target._id);
+
+      try {
+        await deleteProductAction(formData);
+        toast.success("Producto eliminado.");
+      } catch {
+        toast.error("No se pudo eliminar.");
+      } finally {
+        setDeleting(null);
+      }
     });
   }
 

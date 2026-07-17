@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, ShoppingBag, Settings, LifeBuoy } from 'lucide-react'
+import { LayoutDashboard, Package, ShoppingBag, Settings, LifeBuoy, CatIcon } from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -19,7 +19,9 @@ import {
 const navItems = [
   { title: 'Resumen', href: '/admin', icon: LayoutDashboard },
   { title: 'Productos', href: '/admin/products', icon: Package },
+  {title:'Categorias', href: '/admin/categorias', icon: CatIcon},
   { title: 'Pedidos', href: '/admin/ordenes', icon: ShoppingBag },
+  
 ]
 
 const secondaryItems = [

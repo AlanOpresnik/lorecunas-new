@@ -16,7 +16,7 @@ export function OrderFilters({ active }: { active: OrderFilter }) {
       {filters.map((f) => (
         <Link
           key={f.value}
-          href={f.value === 'all' ? '/ordenes' : `/ordenes?estado=${f.value}`}
+          href={f.value === 'all' ? '/admin/ordenes' : `?estado=${f.value}`}
           className={cn(
             'rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors',
             active === f.value

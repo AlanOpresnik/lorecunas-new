@@ -5,12 +5,23 @@ import { type Product } from "@/lib/types";
 import ProductDetailsImageSelect from "./product-details-image-select";
 import ProductDetailActionsButton from "./Product-detail-actions-button";
 import ProductDetailCaracteristics from "./Product-detail-caracteristics";
+import { notFound } from "next/navigation";
+import { api } from "@/lib/api";
+import ProductVideoPlayer from "./VideoPlayer/TutorialVideoPlayer";
+import { RelatedProducts } from "./related-products";
 
 interface ProductDetailProps {
   product: Product;
 }
 
-export function ProductDetail({ product }: ProductDetailProps) {
+interface Props {
+  params: Promise<{ slug: string; id: string }>;
+}
+
+export async function ProductDetail({ params }: Props) {
+  const { id } = await params;
+  const product = await api.getProductById(id);
+  if (!product) notFound();
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-12">
       {/* Breadcrumb */}
@@ -84,6 +95,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
             Volver al catalogo
           </Link>
         </div>
+      </div>
+
+      {product.videoUrl ? <ProductVideoPlayer videoUrl={product.videoUrl} /> : null}
+
+      <div>
+        <RelatedProducts categorySlug={product.category}/>
       </div>
     </div>
   );

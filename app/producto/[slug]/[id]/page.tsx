@@ -1,10 +1,9 @@
-import { notFound } from "next/navigation";
 
 import type { Metadata } from "next";
 import { ProductDetail } from "@/components/productDetail/product-detail";
-import { RelatedProducts } from "@/components/productDetail/related-products";
-import TutorialVideoPlayer from "@/components/productDetail/VideoPlayer/TutorialVideoPlayer";
 import { api } from "@/lib/api";
+import { Suspense } from "react";
+import ProductDetailSkeleton from "@/components/productDetail/ProductDetailSkeleton/ProductDetailSkeleton";
 
 interface Props {
   params: Promise<{ slug: string; id: string }>;
@@ -21,17 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { id } = await params;
-  const product = await api.getProductById(id);
-  if (!product) notFound();
-
   return (
     <>
-      <ProductDetail product={product} />
-      <TutorialVideoPlayer />
-      <RelatedProducts
-        categorySlug={product.categorySlug}
-      />
+      <Suspense fallback={<ProductDetailSkeleton />}>
+        <ProductDetail params={params} />
+      </Suspense>
     </>
   );
 }

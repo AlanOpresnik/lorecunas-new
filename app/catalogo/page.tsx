@@ -1,16 +1,28 @@
-import { Suspense } from "react"
-import { CatalogContent } from "@/components/catalog-content"
-import type { Metadata } from "next"
-import { api } from "@/lib/api"
+import { Suspense } from "react";
+import { CatalogContent } from "@/components/Catalog/catalog-content";
+import type { Metadata } from "next";
+import { api } from "@/lib/api";
+import CatalogSkeleton from "@/components/Catalog/CatalogSkeleton";
 
 export const metadata: Metadata = {
   title: "Catalogo | Cunita Bebe",
   description:
     "Explora nuestro catalogo completo de muebles infantiles premium. Cunas, roperos, comodas y mas.",
-}
+};
 
-export default async function CatalogoPage() {
-  const catalogContent = await api.getProducts()
+export default async function CatalogoPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ categoria?: string }>;
+}) {
+  const params = await searchParams;
+  const selectedCategory = params?.categoria ?? "";
+
+  const [products, categories] = await Promise.all([
+    api.getProducts(),
+    api.getCategorys(),
+  ]);
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
       <div className="mb-10 text-center">
@@ -22,9 +34,13 @@ export default async function CatalogoPage() {
         </p>
       </div>
 
-      <Suspense fallback={<div className="py-20 text-center text-muted-foreground">Cargando catalogo...</div>}>
-        <CatalogContent products={catalogContent} />
+      <Suspense fallback={<CatalogSkeleton />}>
+        <CatalogContent
+          products={products}
+          categories={categories}
+          selectedCategory={selectedCategory}
+        />
       </Suspense>
     </div>
-  )
+  );
 }

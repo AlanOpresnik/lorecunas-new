@@ -12,6 +12,7 @@ type SubmitArgs = {
   status: string;
   featured: boolean;
   isNew: boolean;
+  videoUrl: string;
   colors: string[];
   caracteristics: Caracteristics[];
   existingImages: string[];
@@ -46,6 +47,7 @@ export function     useProductForm(
       category: args.category,
       price: priceValue,
       stock: stockValue,
+      videoUrl: args.videoUrl,
     });
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
@@ -62,6 +64,7 @@ export function     useProductForm(
     if (originalPriceValue) fd.set("originalPrice", originalPriceValue);
     fd.set("description", descriptionValue ?? "");
     fd.set("shortDescription", shortDescriptionValue ?? "");
+    fd.set("videoUrl", args.videoUrl?.trim() ?? "");
     fd.set("stock", stockValue);
     fd.set("featured", String(args.featured));
     fd.set("isNew", String(args.isNew));

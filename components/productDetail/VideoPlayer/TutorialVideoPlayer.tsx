@@ -1,9 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 type FeatureProps = {
   text: string;
+};
+
+type TutorialVideoPlayerProps = {
+  videoUrl: string;
 };
 
 const Feature: React.FC<FeatureProps> = ({ text }) => {
@@ -15,14 +19,19 @@ const Feature: React.FC<FeatureProps> = ({ text }) => {
   );
 };
 
-const TutorialVideoPlayer: React.FC = () => {
+const TutorialVideoPlayer: React.FC<TutorialVideoPlayerProps> = ({ videoUrl }) => {
   const [playing, setPlaying] = useState<boolean>(false);
 
-  // CAMBIÁ ESTE ID
-  const youtubeVideoId = "dQw4w9WgXcQ";
+  const youtubeVideoId = useMemo(() => {
+    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})(?:[&?].*)?$/
+    const match = videoUrl.match(regex)
+    return match ? match[1] : ""
+  }, [videoUrl])
+
+  if (!youtubeVideoId) return null
 
   return (
-    <section className="w-full bg-[#f6f7f9] py-20 px-4">
+    <section className="w-full  py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="relative grid lg:grid-cols-2 gap-10 items-center bg-white rounded-[32px] p-6 lg:p-10 overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
           {/* Glow */}

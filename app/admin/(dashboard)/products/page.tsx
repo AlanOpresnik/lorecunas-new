@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { Package, CheckCircle2, DollarSign, AlertTriangle } from "lucide-react";
 import { DashboardHeader } from "../../components/Dashboard/DashboardHeader";
 import { NewProductButton } from "../../components/Products/NewProductButton";

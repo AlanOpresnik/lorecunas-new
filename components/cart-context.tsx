@@ -24,11 +24,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addItem = useCallback((product: Product, color: string) => {
     setItems((prev) => {
       const existing = prev.find(
-        (item) => item.product.id === product.id && item.selectedColor === color
+        (item) => item.product._id === product._id && item.selectedColor === color
       )
       if (existing) {
         return prev.map((item) =>
-          item.product.id === product.id && item.selectedColor === color
+          item.product._id === product._id && item.selectedColor === color
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -39,17 +39,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const removeItem = useCallback((productId: string) => {
-    setItems((prev) => prev.filter((item) => item.product.id !== productId))
+    setItems((prev) => prev.filter((item) => item.product._id !== productId))
   }, [])
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {
     if (quantity <= 0) {
-      setItems((prev) => prev.filter((item) => item.product.id !== productId))
+      setItems((prev) => prev.filter((item) => item.product._id !== productId))
       return
     }
     setItems((prev) =>
       prev.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
+        item.product._id === productId ? { ...item, quantity } : item
       )
     )
   }, [])

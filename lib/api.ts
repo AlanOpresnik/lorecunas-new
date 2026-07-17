@@ -1,5 +1,5 @@
 import { Stats } from "./interfaces/Stats";
-import { Product } from "./types";
+import { Product, ProductCategory } from "./types";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -86,7 +86,7 @@ export const api = {
   },
   async CreateProduct(data: FormData): Promise<Product | undefined> {
     try {
-      console.log(data)
+      console.log(data);
       const res = await fetch(`${API_URL}/products`, {
         method: "POST",
         body: data,
@@ -98,22 +98,55 @@ export const api = {
       return undefined;
     }
   },
-  async updateProduct(id: string, data: FormData): Promise<Product | undefined> {
+  async updateProduct(
+    id: string,
+    data: FormData,
+  ): Promise<Product | undefined> {
     try {
       const res = await fetch(`${API_URL}/products/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: data,
       });
       if (!res.ok) {
         throw new Error("Error al actualizar el producto");
       }
       return await res.json();
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error updating product:", error);
+      return undefined;
+    }
+  },
+
+  async deleteProduct(id: string) {
+    try {
+      const res = await fetch(`${API_URL}/products/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async createPreference(data: Record<string, unknown>) {
+    console.log(data)
+    try {
+      const res = await fetch(`${API_URL}/mercadopago/create-preference`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+
+
+      return await res.json();
+    } catch (error) {
+      console.error("Error creating preference:", error);
       return undefined;
     }
   },
@@ -125,7 +158,7 @@ export const api = {
           "Content-Type": "application/json",
         },
         cache: "no-store",
-      }); 
+      });
       return await res.json();
     } catch (error) {
       console.error("Error fetching stats:", error);
@@ -139,6 +172,71 @@ export const api = {
         createdAt: "",
         updatedAt: "",
       };
-    } 
-  }
+    }
+  },
+  async getCategorys(): Promise<ProductCategory[]> {
+    try {
+      const res = await fetch(`${API_URL}/categories`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Error al obtener categorias");
+      }
+      return await res.json();
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      return [];
+    }
+  },
+  async createCategory(data: {
+    name: string;
+    description?: string;
+    image?: string;
+    active?: boolean;
+  }): Promise<ProductCategory | undefined> {
+    try {
+      const res = await fetch(`${API_URL}/categories`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          description: data.description ?? "",
+          image: data.image ?? "",
+          active: data.active ?? true,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Error al crear la categoría");
+      }
+
+      const text = await res.text();
+      return text ? JSON.parse(text) : undefined;
+    } catch (error) {
+      console.error("Error creating category:", error);
+      return undefined;
+    }
+  },
+
+  async deleteCategory(categoryId: string): Promise<boolean> {
+    try {
+      const res = await fetch(`${API_URL}/categories/${categoryId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return res.ok;
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      return false;
+    }
+  },
 };

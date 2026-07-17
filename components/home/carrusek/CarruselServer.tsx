@@ -2,7 +2,6 @@ import { ProductCard } from "@/components/product-card";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Carrousel from "./carrousel";
-import { Suspense } from "react";
 import { api } from "@/lib/api";
 
 export async function CarrouselServer() {
@@ -22,9 +21,7 @@ export async function CarrouselServer() {
           diseño, calidad y funcionalidad.
         </p>
       </div>
-      <Suspense fallback={<div>Cargando...</div>}>
         <Carrousel products={featured} />
-      </Suspense>
 
       <div className="mt-10 flex justify-center">
         <Link

@@ -1,79 +1,6 @@
 import { Product, Category, Testimonial } from "./types";
 
-export const categories: Category[] = [
-  {
-    id: "1",
-    name: "Cunas Funcionales",
-    slug: "cunas-funcionales",
-    description:
-      "Cunas que se transforman y crecen con tu bebe, combinando versatilidad y diseno premium.",
-    image: "/images/crib-functional.jpg",
-    productCount: 6,
-  },
-  {
-    id: "2",
-    name: "Cunas Estandar",
-    slug: "cunas-estandar",
-    description:
-      "Cunas clasicas con diseno elegante y la maxima seguridad para el descanso de tu bebe.",
-    image: "/images/crib-standard.jpg",
-    productCount: 5,
-  },
-  {
-    id: "3",
-    name: "Roperos",
-    slug: "roperos",
-    description:
-      "Roperos amplios y funcionales para organizar toda la ropita de tu bebe.",
-    image: "/images/wardrobe.jpg",
-    productCount: 4,
-  },
-  {
-    id: "4",
-    name: "Chifonieres",
-    slug: "chifonieres",
-    description:
-      "Chifonieres con cajones espaciosos para mantener todo en orden.",
-    image: "/images/chiffonier.jpg",
-    productCount: 3,
-  },
-  {
-    id: "5",
-    name: "Comodas",
-    slug: "comodas",
-    description:
-      "Comodas con cambiador integrado, perfectas para la rutina diaria con tu bebe.",
-    image: "/images/dresser.jpg",
-    productCount: 4,
-  },
-  {
-    id: "6",
-    name: "Mesas de Luz",
-    slug: "mesas-de-luz",
-    description:
-      "Mesas de luz que complementan perfectamente la habitacion del bebe.",
-    image: "/images/nightstand.jpg",
-    productCount: 3,
-  },
-  {
-    id: "7",
-    name: "Decoracion Infantil",
-    slug: "decoracion-infantil",
-    description:
-      "Accesorios decorativos para crear un espacio magico y acogedor.",
-    image: "/images/decoration.jpg",
-    productCount: 8,
-  },
-  {
-    id: "8",
-    name: "Accesorios para Bebes",
-    slug: "accesorios-bebes",
-    description:
-      "Complementos esenciales para el bienestar y la comodidad de tu bebe.",
-    image: "/images/accessories.jpg",
-    productCount: 6,
-  },
-];
+
 
 
 export const testimonials: Testimonial[] = [
@@ -135,9 +62,7 @@ export const benefits = [
 
 
 
-export function getCategoryBySlug(slug: string): Category | undefined {
-  return categories.find((c) => c.slug === slug);
-}
+
 
 export function formatPrice(price: number): string {
   return new Intl.NumberFormat("es-AR", {
@@ -172,6 +97,8 @@ const orders: Order[] = [
     reference: '#1042',
     customerName: 'María Fernández',
     customerEmail: 'maria.f@gmail.com',
+    customerPhone: '+54 9 11 2345 6789',
+    customerAddress: 'Av. Corrientes 1234, CABA',
     items: 2,
     total: 254800,
     status: 'approved',
@@ -184,6 +111,8 @@ const orders: Order[] = [
     reference: '#1041',
     customerName: 'Julián Torres',
     customerEmail: 'julian.torres@hotmail.com',
+    customerPhone: '+54 9 11 2987 6543',
+    customerAddress: 'Calle Mendoza 345, Córdoba',
     items: 1,
     total: 64900,
     status: 'pending',
@@ -196,6 +125,8 @@ const orders: Order[] = [
     reference: '#1040',
     customerName: 'Carla Giménez',
     customerEmail: 'carla.gimenez@gmail.com',
+    customerPhone: '+54 9 11 4567 8901',
+    customerAddress: 'Calle Sarmiento 210, Mar del Plata',
     items: 3,
     total: 187700,
     status: 'approved',
@@ -208,6 +139,8 @@ const orders: Order[] = [
     reference: '#1039',
     customerName: 'Diego Rossi',
     customerEmail: 'drossi@outlook.com',
+    customerPhone: '+54 9 11 3344 5566',
+    customerAddress: 'Bv. Oroño 876, Rosario',
     items: 1,
     total: 142500,
     status: 'rejected',
@@ -220,6 +153,8 @@ const orders: Order[] = [
     reference: '#1038',
     customerName: 'Sofía Álvarez',
     customerEmail: 'sofi.alvarez@gmail.com',
+    customerPhone: '+54 9 11 7788 9900',
+    customerAddress: 'Av. Libertador 987, CABA',
     items: 4,
     total: 321600,
     status: 'approved',
@@ -232,6 +167,8 @@ const orders: Order[] = [
     reference: '#1037',
     customerName: 'Nicolás Medina',
     customerEmail: 'nico.medina@gmail.com',
+    customerPhone: '+54 9 11 1122 3344',
+    customerAddress: 'Calle Belgrano 56, Mendoza',
     items: 2,
     total: 93800,
     status: 'pending',
@@ -244,6 +181,8 @@ const orders: Order[] = [
     reference: '#1036',
     customerName: 'Valentina Ruiz',
     customerEmail: 'valen.ruiz@hotmail.com',
+    customerPhone: '+54 9 11 6677 8899',
+    customerAddress: 'Av. Rivadavia 2345, La Plata',
     items: 1,
     total: 28900,
     status: 'approved',
@@ -256,6 +195,8 @@ const orders: Order[] = [
     reference: '#1035',
     customerName: 'Martín Castro',
     customerEmail: 'martincastro@gmail.com',
+    customerPhone: '+54 9 11 9900 1122',
+    customerAddress: 'Calle San Martín 720, Salta',
     items: 5,
     total: 412300,
     status: 'rejected',

@@ -13,6 +13,7 @@ export interface Product {
   caracteristics: Caracteristics[];
   colors: string[];
   featured: boolean;
+  videoUrl?: string;
   isNew: boolean;
   createdAt: string;
   updatedAt: string;
@@ -50,22 +51,15 @@ export interface Testimonial {
 
 export type ProductStatus = 'active' | 'inactive' | 'draft'
 
-export type ProductCategory =
-  | 'Cunas'
-  | 'Colchones'
-  | 'Cómodas'
-  | 'Textiles'
-  | 'Decoración'
-  | 'Muebles'
+export type ProductCategory = {
+  _id:string;
+  name:string;
+  description:string;
+  image:string;
+  active:boolean;
+}
 
-export const PRODUCT_CATEGORIES: ProductCategory[] = [
-  'Cunas',
-  'Colchones',
-  'Cómodas',
-  'Textiles',
-  'Decoración',
-  'Muebles',
-]
+
 
 
 
@@ -80,6 +74,8 @@ export type Order = {
   reference: string
   customerName: string
   customerEmail: string
+  customerPhone: string
+  customerAddress: string
   items: number
   total: number
   status: PaymentStatus

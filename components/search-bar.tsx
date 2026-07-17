@@ -102,7 +102,7 @@ export function SearchBar() {
               {results.map((product) => (
                 <Link
                   key={product._id}
-                  href={`/producto/${product.slug}`}
+                  href={`/producto/${product.slug}/${product._id}`}
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-3 p-3 hover:bg-muted"
                 >
