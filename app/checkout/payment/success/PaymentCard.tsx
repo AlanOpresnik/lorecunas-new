@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ORDER_STORAGE_KEY } from "../../page";
 import { Order } from "@/lib/types";
 
-const PAYMENT_METHOD = "Tarjeta ····4242";
 const WHATSAPP_PHONE = "5491112345678";
 
 interface Props {
