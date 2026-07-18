@@ -69,18 +69,17 @@ export type ProductCategory = {
  */
 export type PaymentStatus = 'approved' | 'pending' | 'rejected'
 
-export type Order = {
-  id: string
-  reference: string
-  customerName: string
-  customerEmail: string
-  customerPhone: string
-  customerAddress: string
-  items: number
-  total: number
-  status: PaymentStatus
-  /** Mercado Pago payment id (payment.id) */
-  mpPaymentId: string
-  paymentMethod: string
-  createdAt: string
+export interface Order {
+  _id: string;
+  usuario: string;
+  correo: string;
+  telefono: string;
+  telefonoSecundario: string;
+  producto: Product;
+  montoPago: number;
+  statusPago: "approved" | "pending" | "rejected" | "in_process" | string;
+  mercadoPagoId: string;
+  notas: string;
+  createdAt: string; // ISO date string, ej. "2026-07-17T01:01:38.561+00:00"
+  updatedAt: string;
 }

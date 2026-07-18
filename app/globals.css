@@ -94,3 +94,103 @@
 html {
   scroll-behavior: smooth;
 }
+
+@import "tailwindcss";
+
+/*
+  Tailwind v4 ya no usa tailwind.config.ts: los tokens del tema
+  (colores, fuentes, etc.) se declaran acá con @theme, y se generan
+  automáticamente las utilidades bg-*, text-*, border-* con ese nombre.
+*/
+@theme {
+  --color-paper: #f6f1e7;
+  --color-paper-line: #ded4bb;
+  --color-receipt: #20242c;
+  --color-receipt-muted: #6b6455;
+  --color-stamp: #1e6f4e;
+  --color-gold: #b8892b;
+}
+
+/*
+  Los @keyframes son CSS normal, no necesitan pasar por @theme.
+  Tailwind los deja pasar tal cual al bundle final, y las clases
+  animate-[nombre_...] de page.tsx los referencian directamente.
+*/
+@keyframes feedIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-130%) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(6px) rotate(0.4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawLine {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes typeRow {
+  0% {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stampSlam {
+  0% {
+    opacity: 0;
+    transform: rotate(-24deg) scale(2.4);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(-9deg) scale(0.92);
+  }
+  75% {
+    opacity: 1;
+    transform: rotate(-13deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-12deg) scale(1);
+  }
+}
+
+@keyframes inkBleed {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  40% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}

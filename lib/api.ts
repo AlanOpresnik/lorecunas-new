@@ -1,7 +1,7 @@
 import { Stats } from "./interfaces/Stats";
-import { Product, ProductCategory } from "./types";
+import { Order, Product, ProductCategory } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const api = {
   async getProducts(): Promise<Product[]> {
@@ -132,7 +132,7 @@ export const api = {
   },
 
   async createPreference(data: Record<string, unknown>) {
-    console.log(data)
+    console.log(data);
     try {
       const res = await fetch(`${API_URL}/mercadopago/create-preference`, {
         method: "POST",
@@ -141,8 +141,6 @@ export const api = {
         },
         body: JSON.stringify(data),
       });
-
-
 
       return await res.json();
     } catch (error) {
@@ -237,6 +235,21 @@ export const api = {
     } catch (error) {
       console.error("Error deleting category:", error);
       return false;
+    }
+  },
+  async getOrderByPreferenceId(preferenceId: String): Promise<Order | null> {
+    try {
+      const res = await fetch(`${API_URL}/preferenceId/${preferenceId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return await res.json();
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   },
 };

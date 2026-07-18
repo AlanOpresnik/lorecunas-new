@@ -9,6 +9,8 @@ import { api } from "@/lib/api"
 import { buildCheckoutPayload, type CheckoutFormValues } from "@/lib/checkout"
 import Link from "next/link"
 
+export const ORDER_STORAGE_KEY = "last-order-id"
+
 export default function CheckoutPage() {
   const { items, removeItem, updateQuantity, totalPrice, clearCart } = useCart()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -59,6 +61,9 @@ export default function CheckoutPage() {
     try {
       const response = await api.createPreference(payload)
       const paymentUrl = response?.init_point || response?.sandbox_init_point
+      const orderIdentifier = response.preferenceId;
+
+      window.localStorage.setItem(ORDER_STORAGE_KEY, String(orderIdentifier))
 
       if (paymentUrl) {
         window.location.href = paymentUrl
