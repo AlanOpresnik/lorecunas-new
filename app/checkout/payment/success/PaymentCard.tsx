@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Order } from "@/lib/types";
+import { formatCurrency } from "@/lib/format";
 
-const WHATSAPP_PHONE = "5491112345678";
+const WHATSAPP_PHONE = "541169393427";
 
 interface Props {
   order: Order | null;
@@ -12,8 +13,8 @@ interface Props {
 export default function PaymentSuccessCard({ order }: Props) {
   const [secondsLeft, setSecondsLeft] = useState(10);
 
-  if(!order) {
-    return <p>Cargando orden...</p>
+  if (!order) {
+    return <p>Cargando orden...</p>;
   }
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function PaymentSuccessCard({ order }: Props) {
     return () => window.clearInterval(timer);
   }, []);
 
-  const whatsappMessage = `Hola, confirmo mi compra. Orden: ${order.mercadoPagoId} · Total: ${order.montoPago} · Método de pago: Mercado pago. Quiero coordinar la entrega.`;
+  const whatsappMessage = `Hola, confirmo mi compra. Orden: ${order.mercadoPagoId} · Cuna: ${order.producto.name} · Total de seña: ${order.montoPago} · Total restante a abonar: ${formatCurrency(order.producto.price - order.montoPago)} Método de pago: Mercado pago. Quiero coordinar la entrega a ${order.direction}.`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
