@@ -91,16 +91,16 @@ export default function PaymentSuccessCard({ order }: Props) {
           <Row label="N° de orden" value={order._id} />
           <Row label="Nombre" value={order.usuario} />
           <Row label="Correo electronico" value={order.correo} />
-          <Row label="Notas de la orden" value={order.notas} />
+          <Row label="Direccion de entrega" value={order.direction} />
           <Row label="Telefono de contacto" value={order.telefono} />
           <Row
             label="Estado del pago"
             value={
               order.statusPago === "approved"
-                ? "Pago recibido con exito"
+                ? "Exitoso"
                 : order.statusPago === "pending"
-                  ? "El pago esta pendiente de confirmacion"
-                  : "El pago fue rechazado comunicarse por telefono."
+                  ? "Pendiente de confirmacion"
+                  : "Rechazado comunicarse por telefono."
             }
           />
           <Row label="Total" value={String(order.montoPago)} />
