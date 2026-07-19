@@ -246,6 +246,9 @@ export const api = {
         },
       });
 
+      console.log(res)
+
+
       return await res.json();
     } catch (error) {
       console.log(error);
