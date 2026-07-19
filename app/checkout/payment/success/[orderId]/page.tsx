@@ -2,20 +2,13 @@ import { api } from "@/lib/api";
 import PaymentSuccessCard from "../PaymentCard";
 
 export default async function PaymentSuccessPage({
-  searchParams,
+  params,
 }: {
-  searchParams: Promise<{
-    orderId?: string;
-    status?: string;
-  }>;
+  params: Promise<{ orderId: string }>;
 }) {
-  const { orderId } = await searchParams;
-
-  if (!orderId) {
-    return <div>Order not found</div>;
-  }
+  const { orderId } = await params;
 
   const order = await api.getOrderByPreferenceId(orderId);
 
   return <PaymentSuccessCard order={order} />;
-}   
+}
