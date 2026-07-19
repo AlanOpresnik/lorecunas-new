@@ -237,22 +237,23 @@ export const api = {
       return false;
     }
   },
-  async getOrderByPreferenceId(preferenceId: String): Promise<Order | null> {
+  async getOrderByPreferenceId(preferenceId: string): Promise<Order | null> {
     try {
-      const res = await fetch(`${API_URL}/preferenceId/${preferenceId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(`${API_URL}/orders/preferenceId/${preferenceId}`);
 
-      console.log(res)
+      if (!res.ok) {
+        console.error("Error:", res.status, res.statusText);
+        return null;
+      }
 
+      const data = await res.json();
 
-      return await res.json();
+      console.log(data);
+
+      return data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return null;
     }
-  },
+  },  
 };
