@@ -7,7 +7,7 @@ export type CheckoutFormValues = {
   telefono: string
   telefonoSecundario: string
   montoPago: Number;
-  notas: string
+  direction: string
 }
 
 export type CheckoutProduct = {
@@ -27,7 +27,7 @@ export type CheckoutPayload = {
   telefonoSecundario: string
   montoPago: number
   orderData: {
-    notes: string
+    direction: string
     items: Array<{
       name: string
       quantity: number
@@ -64,7 +64,7 @@ export function buildCheckoutPayload(args: {
     telefonoSecundario: args.form.telefonoSecundario.trim(),
     montoPago: productPrice,
     orderData: {
-      notes: args.form.notas.trim(),
+      direction: args.form.direction.trim(),
       items: args.items.map((item) => ({
         name: item.product.name,
         quantity: item.quantity,

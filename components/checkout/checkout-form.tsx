@@ -16,15 +16,7 @@ type CheckoutFormProps = {
 export function CheckoutForm({ form, isSubmitting, error, onChange, onSubmit }: CheckoutFormProps) {
   return (
     <form onSubmit={onSubmit} className="mt-6 space-y-4">
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">Producto</label>
-        <input
-          value={form.producto}
-          onChange={(event) => onChange("producto", event.target.value)}
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
-          placeholder="Nombre del producto"
-        />
-      </div>
+
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-foreground">Tu nombre</label>
@@ -67,29 +59,17 @@ export function CheckoutForm({ form, isSubmitting, error, onChange, onSubmit }: 
             value={form.telefonoSecundario}
             onChange={(event) => onChange("telefonoSecundario", event.target.value)}
             className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
-            placeholder="Opcional"
+            placeholder="11 2345 6892"
           />
         </div>
       </div>
-
       <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">Monto a pagar</label>
-        <input
-          type="number"
-          value={form.montoPago}
-          onChange={(event) => onChange("montoPago", event.target.value)}
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
-          placeholder="0"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">Notas del pedido</label>
+        <label className="text-sm font-medium text-foreground">Direccion</label>
         <textarea
-          value={form.notas}
-          onChange={(event) => onChange("notas", event.target.value)}
+          value={form.direction}
+          onChange={(event) => onChange("direction", event.target.value)}
           className="min-h-24 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
-          placeholder="Información adicional para el pedido"
+          placeholder="Direccion para cotizar tu envio..."
         />
       </div>
 

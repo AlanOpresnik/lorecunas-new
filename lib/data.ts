@@ -206,26 +206,4 @@ const orders: Order[] = [
   },
 ]
 
-export async function getOrders(): Promise<Order[]> {
-  return [...orders].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-}
 
-export async function getOrderStats() {
-  const totalRevenue = orders
-    .filter((o) => o.status === 'approved')
-    .reduce((sum, o) => sum + o.total, 0)
-  const counts = orders.reduce(
-    (acc, o) => {
-      acc[o.status] += 1
-      return acc
-    },
-    { approved: 0, pending: 0, rejected: 0 } as Record<PaymentStatus, number>,
-  )
-  return {
-    totalRevenue,
-    totalOrders: orders.length,
-    approved: counts.approved,
-    pending: counts.pending,
-    rejected: counts.rejected,
-  }
-}

@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/table";
 import { formatCurrency, formatDateTime } from "@/lib/format";
 import { PaymentStatusBadge } from "../PaymentsBadge/PaymentsBadge";
+import OrderUserData from "./OrderUserData";
+import OrderDetails from "./OrderDetails";
 
 export function OrdersTable({ orders }: { orders: Order[] }) {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
@@ -36,7 +38,7 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Pedido {selectedOrder?.reference}</DialogTitle>
+            <DialogTitle>Pedido {selectedOrder?.mercadoPagoId}</DialogTitle>
             <DialogDescription>
               Datos de contacto y resumen de la orden seleccionada.
             </DialogDescription>
@@ -44,54 +46,89 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
 
           {selectedOrder ? (
             <div className="grid gap-4 pt-2">
-              <div className="grid gap-2 rounded-xl border border-border bg-muted p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Cliente
-                </p>
-                <p className="text-sm font-medium text-foreground">
-                  {selectedOrder.customerName}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {selectedOrder.customerEmail}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {selectedOrder.customerPhone}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {selectedOrder.customerAddress}
-                </p>
-              </div>
+              <OrderUserData selectedOrder={selectedOrder} />
 
               <div className="grid gap-2 rounded-xl border border-border bg-muted p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Detalles de la orden
                 </p>
                 <div className="grid gap-1 text-sm text-muted-foreground">
+                  <OrderDetails selectedOrder={selectedOrder}/>
+                  <div className="rounded-xl border border-border bg-muted/30 p-4">
+                    <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                      Información del producto
+                    </h3>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">
+                          Producto
+                        </span>
+                        <span className="font-medium text-foreground">
+                          {selectedOrder.producto.name}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">
+                          Precio
+                        </span>
+                        <span className="font-medium text-foreground">
+                          ${selectedOrder.producto.price}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">
+                          Stock
+                        </span>
+                        <span className="font-medium text-foreground">
+                          {selectedOrder.producto.stock}
+                        </span>
+                      </div>
+
+                      <div className="flex items-start justify-between gap-6">
+                        <span className="text-sm text-muted-foreground">
+                          Colores
+                        </span>
+
+                        <div className="flex flex-wrap justify-end gap-2">
+                          {selectedOrder.producto.colors.map((color) => (
+                            <span
+                              key={color}
+                              className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary"
+                            >
+                              {color}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex items-start justify-between gap-6">
+                        <span className="text-sm text-muted-foreground">
+                          Características
+                        </span>
+
+                        <div className="flex flex-wrap justify-end gap-2">
+                          {selectedOrder.producto.caracteristics.map((c) => (
+                            <>
+                              <span
+                                key={c.title}
+                                className="rounded-full bg-secondary px-2.5 py-1 text-xs"
+                              >
+                                {c.title + " " + c.value}
+                              </span>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="flex justify-between gap-2">
                     <span className="font-medium text-foreground">
-                      Referencia
+                      Total PAGADO{" "}
                     </span>
-                    <span>{selectedOrder.reference}</span>
-                  </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="font-medium text-foreground">Estado</span>
-                    <span className="capitalize">{selectedOrder.status}</span>
-                  </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="font-medium text-foreground">Pago</span>
-                    <span>{selectedOrder.paymentMethod}</span>
-                  </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="font-medium text-foreground">Fecha</span>
-                    <span>{formatDateTime(selectedOrder.createdAt)}</span>
-                  </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="font-medium text-foreground">Ítems</span>
-                    <span>{selectedOrder.items}</span>
-                  </div>
-                  <div className="flex justify-between gap-2">
-                    <span className="font-medium text-foreground">Total</span>
-                    <span>{formatCurrency(selectedOrder.total)}</span>
+                    <span>{formatCurrency(selectedOrder.montoPago)}</span>
                   </div>
                 </div>
               </div>
@@ -123,14 +160,14 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
           </TableHeader>
           <TableBody>
             {orders.map((order) => (
-              <TableRow key={order.id}>
+              <TableRow key={order._id}>
                 <TableCell>
                   <div className="flex flex-col">
                     <span className="font-medium text-foreground">
-                      {order.reference}
+                      {order._id}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      MP {order.mpPaymentId}
+                      MP {order.mercadoPagoId}
                     </span>
                   </div>
                 </TableCell>
@@ -141,27 +178,27 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
                     onClick={() => setSelectedOrder(order)}
                   >
                     <span className="text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline">
-                      {order.customerName}
+                      {order.usuario}
                     </span>
                     <span className="truncate text-xs text-muted-foreground">
-                      {order.customerEmail}
+                      {order.correo}
                     </span>
                   </button>
                 </TableCell>
                 <TableCell className="hidden text-sm text-muted-foreground lg:table-cell">
-                  {order.paymentMethod}
+                  Mercado Pago
                 </TableCell>
                 <TableCell className="hidden text-sm text-muted-foreground md:table-cell">
                   {formatDateTime(order.createdAt)}
                 </TableCell>
                 <TableCell className="text-center text-sm text-foreground">
-                  {order.items}
+                  {order.producto.name}
                 </TableCell>
                 <TableCell className="text-right font-medium text-foreground">
-                  {formatCurrency(order.total)}
+                  {formatCurrency(order.montoPago)}
                 </TableCell>
                 <TableCell>
-                  <PaymentStatusBadge status={order.status} />
+                  <PaymentStatusBadge status={order.statusPago as any} />
                 </TableCell>
               </TableRow>
             ))}

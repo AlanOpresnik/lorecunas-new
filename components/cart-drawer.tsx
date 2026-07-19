@@ -26,7 +26,7 @@ export function CartDrawer() {
       <div className="flex-1  space-y-4 overflow-y-auto py-4">
         {items.map((item) => (
           <div
-            key={`${item.product.id}-${item.selectedColor}`}
+            key={`${item.product._id}-${item.selectedColor}`}
             className="flex gap-3 rounded-lg border border-border p-3"
           >
             <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md">
@@ -44,23 +44,11 @@ export function CartDrawer() {
                 {formatPrice(item.product.price)}
               </p>
               <div className="mt-2 flex items-center gap-2">
+
+                <span className="text-sm font-medium">Unidades: {item.quantity}</span>
+
                 <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                  className="flex h-6 w-6 items-center justify-center rounded border border-border text-foreground hover:bg-accent"
-                  aria-label="Disminuir cantidad"
-                >
-                  <Minus className="h-3 w-3" />
-                </button>
-                <span className="text-sm font-medium">{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                  className="flex h-6 w-6 items-center justify-center rounded border border-border text-foreground hover:bg-accent"
-                  aria-label="Aumentar cantidad"
-                >
-                  <Plus className="h-3 w-3" />
-                </button>
-                <button
-                  onClick={() => removeItem(item.product.id)}
+                  onClick={() => removeItem(item.product._id)}
                   className="ml-auto text-muted-foreground hover:text-destructive"
                   aria-label="Eliminar producto"
                 >

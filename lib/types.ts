@@ -79,7 +79,7 @@ export interface Order {
   montoPago: number;
   statusPago: "approved" | "pending" | "rejected" | "in_process" | string;
   mercadoPagoId: string;
-  notas: string;
+  direction: string;
   createdAt: string; // ISO date string, ej. "2026-07-17T01:01:38.561+00:00"
   updatedAt: string;
 }

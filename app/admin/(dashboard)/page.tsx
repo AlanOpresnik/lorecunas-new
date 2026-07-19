@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { getOrders, getOrderStats } from "@/lib/data";
 import { DashboardHeader } from "../components/Dashboard/DashboardHeader";
 import { StatCard } from "../components/StatCard/StatCard";
 import { formatCurrency, formatDateTime } from "@/lib/format";
@@ -27,10 +26,11 @@ import { api } from "@/lib/api";
 
 export default async function OverviewPage() {
   const [orderStats, productStats, orders, products] = await Promise.all([
-    getOrderStats(),
+    api.getOrderStats(),
     api.getStats(),
-    getOrders(),
+    api.getOrders(),
     api.getProducts(),
+    
   ]);
 
   const recentOrders = orders.slice(0, 5);
@@ -38,6 +38,8 @@ export default async function OverviewPage() {
     .filter((p) => p.stock <= 10)
     .sort((a, b) => a.stock - b.stock)
     .slice(0, 4);
+
+
 
   return (
     <>
@@ -97,12 +99,12 @@ export default async function OverviewPage() {
             <CardContent className="flex flex-col gap-1">
               {recentOrders.map((order) => (
                 <div
-                  key={order.id}
+                  key={order._id}
                   className="flex items-center gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-muted/60"
                 >
                   <Avatar className="size-9">
                     <AvatarFallback className="bg-primary/12 text-xs font-semibold text-primary">
-                      {order.customerName
+                      {order.usuario
                         .split(" ")
                         .map((n) => n[0])
                         .slice(0, 2)
@@ -111,17 +113,17 @@ export default async function OverviewPage() {
                   </Avatar>
                   <div className="flex min-w-0 flex-col">
                     <span className="truncate text-sm font-medium text-foreground">
-                      {order.customerName}
+                      {order.usuario}
                     </span>
                     <span className="truncate text-xs text-muted-foreground">
-                      {order.reference} · {formatDateTime(order.createdAt)}
+                      {order.mercadoPagoId} · {formatDateTime(order.createdAt)}
                     </span>
                   </div>
                   <div className="ml-auto flex items-center gap-3">
                     <span className="hidden text-sm font-semibold text-foreground sm:block">
-                      {formatCurrency(order.total)}
+                      {formatCurrency(order.montoPago)}
                     </span>
-                    <PaymentStatusBadge status={order.status} />
+                    <PaymentStatusBadge status={order.statusPago as any} />
                   </div>
                 </div>
               ))}

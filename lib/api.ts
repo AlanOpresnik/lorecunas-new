@@ -255,5 +255,47 @@ export const api = {
       console.error(error);
       return null;
     }
-  },  
+  },
+
+  async getOrders(): Promise<Order[]> {
+    try {
+      const res = await fetch(`${API_URL}/orders`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        console.error("Error:", res.status, res.statusText);
+        return [];
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.log(error)
+      return []
+    }
+  },
+
+  async getOrderStats() {
+          try {
+      const res = await fetch(`${API_URL}/orders/stats`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        console.error("Error:", res.status, res.statusText);
+        return [];
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.log(error)
+      return []
+    }
+  }
 };
