@@ -1,5 +1,5 @@
 import { api } from "@/lib/api";
-import PaymentSuccessCard from "./PaymentCard";
+import PaymentSuccessCard from "../PaymentCard";
 
 export default async function PaymentSuccessPage({
   searchParams,
@@ -18,4 +18,4 @@ export default async function PaymentSuccessPage({
   const order = await api.getOrderByPreferenceId(orderId);
 
   return <PaymentSuccessCard order={order} />;
-}
+}   
