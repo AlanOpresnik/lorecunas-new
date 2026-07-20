@@ -1,18 +1,10 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
+import { requireAdmin } from "@/lib/auth";
 
 import { Geist, Geist_Mono } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Lorecunas · Panel de administración",
@@ -26,16 +18,16 @@ export const viewport: Viewport = {
   themeColor: "#f6f1ea",
 };
 
-export default function RootLayout({
+export default async function AdminLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  await requireAdmin();
+
   return (
-    <div>
-      {children}
-      <Toaster />
-      {process.env.NODE_ENV === "production" && <Analytics />}
-    </div>
+    <>
+      {children} <Toaster />
+    </>
   );
 }

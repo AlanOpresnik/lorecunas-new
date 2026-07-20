@@ -1,3 +1,4 @@
+import { authHeaders } from "./headers";
 import { Stats } from "./interfaces/Stats";
 import { Category, Order, Product, ProductCategory } from "./types";
 
@@ -90,7 +91,9 @@ export const api = {
       const res = await fetch(`${API_URL}/products`, {
         method: "POST",
         body: data,
-          credentials: "include",
+        headers: {
+          ...(await authHeaders()),
+        },
       });
 
       return await res.json();
@@ -107,7 +110,9 @@ export const api = {
       const res = await fetch(`${API_URL}/products/${id}`, {
         method: "PUT",
         body: data,
-          credentials: "include",
+        headers: {
+          ...(await authHeaders()),
+        },
       });
       if (!res.ok) {
         throw new Error("Error al actualizar el producto");
@@ -123,10 +128,10 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/products/${id}`, {
         method: "DELETE",
-        headers: {
+         headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
-          credentials: "include",
       });
       return await res.json();
     } catch (error) {
@@ -155,11 +160,12 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/stats`, {
         method: "GET",
-        headers: {
+    headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
         cache: "no-store",
-          credentials: "include",
+        credentials: "include",
       });
       return await res.json();
     } catch (error) {
@@ -180,11 +186,12 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/categories`, {
         method: "GET",
-        headers: {
+      headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
         cache: "no-store",
-          credentials: "include",
+        credentials: "include",
       });
       if (!res.ok) {
         throw new Error("Error al obtener categorias");
@@ -204,10 +211,11 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/categories`, {
         method: "POST",
-        headers: {
+    headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
-          credentials: "include",
+        credentials: "include",
         body: JSON.stringify({
           name: data.name,
           description: data.description ?? "",
@@ -232,10 +240,11 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/categories/${categoryId}`, {
         method: "DELETE",
-        headers: {
+    headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
-          credentials: "include",
+        credentials: "include",
       });
 
       return res.ok;
@@ -246,10 +255,13 @@ export const api = {
   },
   async getOrderByPreferenceId(preferenceId: string): Promise<Order | null> {
     try {
-      const res = await fetch(`${API_URL}/orders/preferenceId/${preferenceId}`, {
-        method:'GET',
-          credentials: "include",
-      });
+      const res = await fetch(
+        `${API_URL}/orders/preferenceId/${preferenceId}`,
+        {
+          method: "GET",
+          
+        },
+      );
 
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -271,10 +283,11 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/orders`, {
         method: "GET",
-        headers: {
+      headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
-          credentials: "include",
+        credentials: "include",
       });
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -293,10 +306,11 @@ export const api = {
     try {
       const res = await fetch(`${API_URL}/orders/stats`, {
         method: "GET",
-        headers: {
+       headers: {
           "Content-Type": "application/json",
+          ...(await authHeaders()),
         },
-          credentials: "include",
+        credentials: "include",
       });
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -337,12 +351,11 @@ export const api = {
         success: true,
         data,
       };
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
       return {
         success: false,
-        
       };
     }
-  },  
+  },
 };

@@ -20,26 +20,14 @@ export async function loginAction(
       cache: "no-store",
     });
  
-    const data = await res.json();
- 
-    if (!res.ok) {
-      return {
-        success: false,
-        message: data.error || data.message || "Credenciales inválidas.",
-      };
-    }
- 
-    // Cookie httpOnly seteada en TU dominio (vercel.app), no en onrender.com.
-    // Esto es lo que hace que la cookie no se pierda: el navegador solo
-    // recibe Set-Cookie del mismo origen al que le está pegando (Next.js),
-    // nunca directamente del backend en Render.
-    (await cookies()).set("token", data.token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 2, // 2h — igual al expiresIn del JWT
-    });
+const data = await res.json();
+console.log("Respuesta del backend:", data); 
+
+if (!res.ok) {
+  return { success: false, message: data.error || data.message || "Credenciales inválidas." };
+}
+
+(await cookies()).set("token", data.token,);
  
     return { success: true };
   } catch (error) {
