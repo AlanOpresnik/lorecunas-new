@@ -1,5 +1,5 @@
 import { Stats } from "./interfaces/Stats";
-import { Order, Product, ProductCategory } from "./types";
+import { Category, Order, Product, ProductCategory } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -90,6 +90,7 @@ export const api = {
       const res = await fetch(`${API_URL}/products`, {
         method: "POST",
         body: data,
+          credentials: "include",
       });
 
       return await res.json();
@@ -106,6 +107,7 @@ export const api = {
       const res = await fetch(`${API_URL}/products/${id}`, {
         method: "PUT",
         body: data,
+          credentials: "include",
       });
       if (!res.ok) {
         throw new Error("Error al actualizar el producto");
@@ -124,6 +126,7 @@ export const api = {
         headers: {
           "Content-Type": "application/json",
         },
+          credentials: "include",
       });
       return await res.json();
     } catch (error) {
@@ -156,6 +159,7 @@ export const api = {
           "Content-Type": "application/json",
         },
         cache: "no-store",
+          credentials: "include",
       });
       return await res.json();
     } catch (error) {
@@ -172,7 +176,7 @@ export const api = {
       };
     }
   },
-  async getCategorys(): Promise<ProductCategory[]> {
+  async getCategorys(): Promise<Category[]> {
     try {
       const res = await fetch(`${API_URL}/categories`, {
         method: "GET",
@@ -180,6 +184,7 @@ export const api = {
           "Content-Type": "application/json",
         },
         cache: "no-store",
+          credentials: "include",
       });
       if (!res.ok) {
         throw new Error("Error al obtener categorias");
@@ -202,6 +207,7 @@ export const api = {
         headers: {
           "Content-Type": "application/json",
         },
+          credentials: "include",
         body: JSON.stringify({
           name: data.name,
           description: data.description ?? "",
@@ -229,6 +235,7 @@ export const api = {
         headers: {
           "Content-Type": "application/json",
         },
+          credentials: "include",
       });
 
       return res.ok;
@@ -239,7 +246,10 @@ export const api = {
   },
   async getOrderByPreferenceId(preferenceId: string): Promise<Order | null> {
     try {
-      const res = await fetch(`${API_URL}/orders/preferenceId/${preferenceId}`);
+      const res = await fetch(`${API_URL}/orders/preferenceId/${preferenceId}`, {
+        method:'GET',
+          credentials: "include",
+      });
 
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -264,6 +274,7 @@ export const api = {
         headers: {
           "Content-Type": "application/json",
         },
+          credentials: "include",
       });
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -273,18 +284,19 @@ export const api = {
       const data = await res.json();
       return data;
     } catch (error) {
-      console.log(error)
-      return []
+      console.log(error);
+      return [];
     }
   },
 
   async getOrderStats() {
-          try {
+    try {
       const res = await fetch(`${API_URL}/orders/stats`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
+          credentials: "include",
       });
       if (!res.ok) {
         console.error("Error:", res.status, res.statusText);
@@ -294,8 +306,43 @@ export const api = {
       const data = await res.json();
       return data;
     } catch (error) {
-      console.log(error)
-      return []
+      console.log(error);
+      return [];
     }
-  }
+  },
+  async login(username: string, password: string) {
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return {
+          success: false,
+          message: data.message,
+        };
+      }
+
+      return {
+        success: true,
+        data,
+      };
+    } catch(error) {
+      console.log(error)
+      return {
+        success: false,
+        
+      };
+    }
+  },  
 };

@@ -33,7 +33,21 @@ export default function PaymentSuccessCard({ order }: Props) {
     return () => window.clearInterval(timer);
   }, []);
 
-  const whatsappMessage = `Hola, confirmo mi compra. Orden: ${order.mercadoPagoId} · Cuna: ${order.producto.name} · Total de seña: ${order.montoPago} · Total restante a abonar: ${formatCurrency(order.producto.price - order.montoPago)} Método de pago: Mercado pago. Quiero coordinar la entrega a ${order.direction}.`;
+  const whatsappMessage = `👋 ¡Hola! Confirmo mi compra.
+
+📦 *Orden:* ${order.mercadoPagoId}
+
+🛏️ *Producto:* ${order.producto.name}
+
+💳 *Pago realizado (seña):* ${formatCurrency(order.montoPago)}
+💰 *Saldo restante:* ${formatCurrency(order.producto.price - order.montoPago)}
+
+🏦 *Método de pago:* Mercado Pago
+
+📍 *Dirección de entrega:*
+${order.direction}
+
+Quisiera coordinar la entrega. ¡Muchas gracias! 😊`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (

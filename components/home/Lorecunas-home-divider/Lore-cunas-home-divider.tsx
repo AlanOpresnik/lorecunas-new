@@ -20,7 +20,10 @@ export default function LorecunasHomeDivider() {
             asChild
             className="bg-[#D6B3B3] w-[220px] mt-5 text-primary-foreground hover:bg-primary/90 "
           >
-            <Link className="text-lg " href={"/productos/home"}>
+            <Link
+              className="text-lg "
+              href={`/catalogo?categoria=lorecunas-home`}
+            >
               Ver Lorecunas HOME
             </Link>
           </Button>

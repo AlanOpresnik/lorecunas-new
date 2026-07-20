@@ -4,9 +4,14 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 import { ProductCard } from "@/components/product-card";
-import { Product } from "@/lib/types";
+import { Category, Product } from "@/lib/types";
+import { CategoryCard } from "../CategoryCard";
 
-export default function   Carousel({ products }: { products: Product[] }) {
+export default function CategorySwiper({
+  categorys,
+}: {
+  categorys: Category[];
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
@@ -52,25 +57,28 @@ export default function   Carousel({ products }: { products: Product[] }) {
 
   return (
     <div className="w-full">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {products.map((product) => (
-            <div
-              key={product._id}
-              className="
-                min-w-0
-                p-2
-                flex-[0_0_80%]
-                sm:flex-[0_0_40%]
-                md:flex-[0_0_30%]
-                lg:flex-[0_0_25%]
-              "
-            >
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
+      <div ref={emblaRef} className="overflow-hidden">
+  <div className="flex gap-6">
+    {categorys.map((category) => (
+      <div
+        key={category._id}
+        className="
+          flex-[0_0_85%]
+          sm:flex-[0_0_45%]
+          md:flex-[0_0_35%]
+          lg:flex-[0_0_28%]
+          min-w-0
+        "
+      >
+        <CategoryCard
+          title={category.name}
+          description={category.description}
+          href={category.name}
+        />
       </div>
+    ))}
+  </div>
+</div>
 
       {/* DOTS */}
       <div className="mt-6 flex items-center justify-center gap-2">

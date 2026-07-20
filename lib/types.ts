@@ -26,7 +26,7 @@ export interface Caracteristics {
 }
 
 export interface Category {
-  id: string;
+  _id: string;
   name: string;
   slug: string;
   description: string;

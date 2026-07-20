@@ -1,11 +1,13 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { api } from "@/lib/api"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { api } from "@/lib/api";
+import { CategoryCard } from "./CategoryCard";
+import { slugify } from "@/lib/validations";
 
 export async function CategoriesSection() {
-  const categories = await api.getCategorys()
-  const highlighted = categories.slice(0, 4)
+  const categories = await api.getCategorys();
+  const highlighted = categories.slice(0, 4);
 
   return (
     <section className="bg-secondary/40 py-16 lg:py-24">
@@ -18,38 +20,19 @@ export async function CategoriesSection() {
             Categorias Destacadas
           </h2>
           <p className="mt-2 max-w-lg text-muted-foreground">
-            Encuentra exactamente lo que necesitas para crear la habitacion soñada de tu bebe.
+            Encuentra exactamente lo que necesitas para crear la habitacion
+            soñada de tu bebe.
           </p>
         </div>
 
         <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
           {highlighted.map((cat) => (
-            <Link
+            <CategoryCard
+              description={cat.description}
+              href={`/catalogo?categoria=${slugify(cat.name)}`}
+              title={cat.name}
               key={cat._id}
-              href={`/catalogo?categoria=${cat.name}`}
-              className="group relative overflow-hidden rounded-xl"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src={cat.image}
-                  alt={cat.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <h3 className="font-serif text-lg font-bold text-white">
-                  {cat.name}
-                </h3>
-
-                <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-white/90 transition-colors group-hover:text-white">
-                  Explorar
-                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
+            />
           ))}
         </div>
 
@@ -64,5 +47,5 @@ export async function CategoriesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
