@@ -1,48 +1,39 @@
 "use client";
-
-import { useState } from "react";
+ 
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { api } from "@/lib/api";
-
-
-
+import { loginAction } from "./loginActions";
+ 
 export default function LoginPage() {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
+ 
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     setError("");
-
+ 
     if (!username.trim() || !password.trim()) {
       setError("Completá usuario y contraseña.");
       return;
     }
-
-    setLoading(true);
-
-    try {
-      const response = await api.login(username.trim(), password);
-
-      if (!response.success) {
-        setError(response.message);
+ 
+    startTransition(async () => {
+      const result = await loginAction(username.trim(), password);
+ 
+      if (!result.success) {
+        setError(result.message);
         return;
       }
-      console.log(response)
+ 
       router.replace("/admin");
-      router.refresh();
-    } catch {
-      setError("No se pudo iniciar sesión.");
-    } finally {
-      setLoading(false);
-    }
+      router.refresh(); // refresca Server Components para que lean la cookie nueva
+    });
   }
-
+ 
   return (
     <div
       className={`min-h-screen flex flex-col md:flex-row font-[family-name:var(--font-poppins)] bg-white text-[#2c2622]`}
@@ -57,7 +48,7 @@ export default function LoginPage() {
           }}
         />
         <div className="pointer-events-none absolute -right-28 -bottom-28 w-[420px] h-[420px] rounded-full bg-[#f0a8ae] opacity-20" />
-
+ 
         <div className="relative z-10">
           <div className="flex items-baseline gap-0.5 font-[family-name:var(--font-fraunces)] font-semibold text-3xl tracking-wide">
             <span className="text-[#e08891]">LORE</span>
@@ -67,7 +58,7 @@ export default function LoginPage() {
             Calidad · Diseño · Seguridad · Dedicación
           </div>
         </div>
-
+ 
         <div className="relative z-10 max-w-md hidden md:block">
           <span className="inline-block text-xs tracking-[2px] uppercase font-semibold text-[#e08891] bg-[#f0a8ae]/20 border border-[#e08891]/35 px-3.5 py-1.5 rounded-full mb-5">
             Panel privado
@@ -80,7 +71,7 @@ export default function LoginPage() {
             productos, pedidos y categorías de Lorecunas.
           </p>
         </div>
-
+ 
         <div className="relative z-10 hidden md:block">
           <svg
             viewBox="0 0 120 90"
@@ -146,7 +137,7 @@ export default function LoginPage() {
           </svg>
         </div>
       </section>
-
+ 
       {/* Right: form panel */}
       <section className="flex-1 md:flex-[54] flex items-center justify-center p-6 md:p-10 bg-white">
         <div className="w-full max-w-sm">
@@ -159,7 +150,7 @@ export default function LoginPage() {
           <p className="text-sm text-[#6b6259] mb-9 leading-relaxed">
             Iniciá sesión para continuar administrando Lorecunas.
           </p>
-
+ 
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-4.5 space-y-4.5"
@@ -182,7 +173,7 @@ export default function LoginPage() {
                 className="w-full px-4 py-3 rounded-xl border border-[#e7ddcd] bg-[#f4ede0] text-sm text-[#2c2622] placeholder:text-[#b7ab9a] outline-none transition focus:border-[#e08891] focus:bg-white focus:ring-4 focus:ring-[#e08891]/15"
               />
             </div>
-
+ 
             <div>
               <label
                 htmlFor="password"
@@ -210,19 +201,19 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
-
+ 
             {error && (
               <p className="text-sm text-[#c0525b] bg-[#c0525b]/8 border border-[#c0525b]/25 px-3.5 py-2.5 rounded-xl">
                 {error}
               </p>
             )}
-
+ 
             <button
               type="submit"
-              disabled={loading}
+              disabled={isPending}
               className="mt-1 flex items-center justify-center gap-2 rounded-full bg-[#e08891] hover:bg-[#d5717c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm px-5 py-3.5 transition active:scale-[0.98] group"
             >
-              {loading ? (
+              {isPending ? (
                 <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
@@ -240,10 +231,10 @@ export default function LoginPage() {
                   </svg>
                 </>
               )}
-              {loading && <span>Ingresando...</span>}
+              {isPending && <span>Ingresando...</span>}
             </button>
           </form>
-
+ 
           <p className="text-center text-xs text-[#6b6259] mt-7">
             Acceso exclusivo para el equipo de Lorecunas
           </p>
@@ -252,3 +243,4 @@ export default function LoginPage() {
     </div>
   );
 }
+ 
