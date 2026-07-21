@@ -7,31 +7,19 @@ import {
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Preguntas Frecuentes | Cunita Bebe",
+  title: "Preguntas Frecuentes | LoreCunas",
   description: "Encuentra respuestas a las preguntas mas frecuentes sobre nuestros muebles infantiles.",
 }
 
 const faqs = [
-  {
-    question: "Que materiales utilizan para fabricar los muebles?",
-    answer:
-      "Utilizamos MDF de alta densidad, madera de pino macizo y materiales ecologicos certificados. Todas nuestras terminaciones son laqueadas con pinturas no toxicas, seguras para bebes.",
-  },
-  {
-    question: "Cuanto tiempo tarda el envio?",
-    answer:
-      "Los envios dentro de Buenos Aires demoran entre 3 a 5 dias habiles. Para el interior del pais, el plazo es de 7 a 15 dias habiles dependiendo de la zona. Todos los muebles se envian con embalaje reforzado.",
-  },
+
+
   {
     question: "Las cunas funcionales realmente se convierten en cama?",
     answer:
       "Si! Nuestras cunas funcionales estan diseñadas para transformarse en camas infantiles a medida que tu hijo crece. Incluyen todas las piezas y mecanismos necesarios para la conversion sin costo adicional.",
   },
-  {
-    question: "Tienen garantia los muebles?",
-    answer:
-      "Todos nuestros muebles cuentan con garantia de fabrica de 12 meses que cubre defectos de fabricacion y materiales. Ademas, ofrecemos soporte post-venta para cualquier consulta.",
-  },
+
   {
     question: "Puedo ver los muebles antes de comprar?",
     answer:
@@ -45,7 +33,7 @@ const faqs = [
   {
     question: "Como se realiza el pago?",
     answer:
-      "Aceptamos transferencia bancaria, tarjetas de credito y debito (hasta 12 cuotas sin interes en tarjetas seleccionadas), y efectivo. El pago se coordina al confirmar tu pedido por WhatsApp.",
+      "Aceptamos transferencia bancaria, tarjetas de credito y debito  y efectivo. El pago se coordina al confirmar tu pedido por WhatsApp.",
   },
   {
     question: "Realizan envios al interior del pais?",
@@ -55,7 +43,7 @@ const faqs = [
   {
     question: "Los muebles vienen armados?",
     answer:
-      "Los muebles se envian desarmados para asegurar un transporte seguro. Incluyen instrucciones claras de armado y toda la ferreteria necesaria. Tambien ofrecemos servicio de armado a domicilio con costo adicional.",
+      "Los muebles se envian desarmados para asegurar un transporte seguro. Incluyen toda la ferreteria necesaria.",
   },
   {
     question: "Puedo personalizar los colores de los muebles?",

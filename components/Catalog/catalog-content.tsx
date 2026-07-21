@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
-import type { Product, ProductCategory } from "@/lib/types";
+import type { Category, Product } from "@/lib/types";
 import Link from "next/link";
 
 export function CatalogContent({
@@ -10,7 +10,7 @@ export function CatalogContent({
   selectedCategory,
 }: {
   products: Product[];
-  categories: ProductCategory[];
+  categories: Category[];
   selectedCategory: string;
 }) {
   const filtered = selectedCategory

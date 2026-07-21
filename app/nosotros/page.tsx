@@ -3,7 +3,7 @@ import { Heart, Award, Users, Clock } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nosotros | Cunita Bebe",
+  title: "Nosotros | LoreCunas",
   description:
     "Conoce nuestra historia, pasion y compromiso con la calidad en muebles infantiles.",
 };

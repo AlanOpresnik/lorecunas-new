@@ -5,7 +5,7 @@ import { api } from "@/lib/api";
 import CatalogSkeleton from "@/components/Catalog/CatalogSkeleton";
 
 export const metadata: Metadata = {
-  title: "Catalogo | Cunita Bebe",
+  title: "Catalogo | LoreCunas",
   description:
     "Explora nuestro catalogo completo de muebles infantiles premium. Cunas, roperos, comodas y mas.",
 };
