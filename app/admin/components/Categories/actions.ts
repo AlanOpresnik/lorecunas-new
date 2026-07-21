@@ -29,7 +29,6 @@ export async function deleteCategoryAction(formData: FormData) {
 
   const deleted = await api.deleteCategory(categoryId);
 
-  if (deleted) {
     revalidatePath("/admin/categorias");
-  }
+
 }

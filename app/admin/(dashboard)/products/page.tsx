@@ -13,6 +13,8 @@ export default async function ProductsPage() {
     api.getStats(),
   ]);
 
+  console.log(stats)
+
   return (
     <>
       <DashboardHeader
@@ -21,17 +23,11 @@ export default async function ProductsPage() {
         actions={<NewProductButton />}
       />
       <div className="flex flex-col gap-6 p-4 md:p-6">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           <StatCard
             label="Total productos"
-            value={String(stats.activeProducts + stats.productsOutOfStock)}
+            value={String(products.length)}
             icon={Package}
-          />
-          <StatCard
-            label="Activos"
-            value={String(stats.activeProducts)}
-            icon={CheckCircle2}
-            tone="positive"
           />
           <StatCard
             label="Valor de inventario"

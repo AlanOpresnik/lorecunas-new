@@ -10,10 +10,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { ProductCategory } from "@/lib/types";
+import type { Category } from "@/lib/types";
 import { deleteCategoryAction } from "./actions";
 
-export function CategoriesList({ categories }: { categories: ProductCategory[] }) {
+export function CategoriesList({ categories }: { categories: Category[] }) {
   if (!categories.length) {
     return (
       <Card>

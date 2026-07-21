@@ -1,11 +1,11 @@
-import type { ProductCategory } from "@/lib/types";
+import type { Category } from "@/lib/types";
 import { CategoriesList } from "./CategoriesList";
 import { CreateCategoryDialog } from "./CreateCategoryDialog";
 
 export function CategoriesManager({
   initialCategories,
 }: {
-  initialCategories: ProductCategory[];
+  initialCategories: Category[];
 }) {
   return (
     <div className="flex flex-col gap-4">

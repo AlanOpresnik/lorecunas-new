@@ -1,19 +1,18 @@
-import Image from "next/image"
-import { Heart, Award, Users, Clock } from "lucide-react"
-import type { Metadata } from "next"
+import Image from "next/image";
+import { Heart, Award, Users, Clock } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Nosotros | Cunita Bebe",
   description:
     "Conoce nuestra historia, pasion y compromiso con la calidad en muebles infantiles.",
-}
+};
 
 const stats = [
-  { icon: Heart, label: "Familias felices", value: "+500" },
-  { icon: Award, label: "Años de experiencia", value: "12" },
-  { icon: Users, label: "Artesanos expertos", value: "15" },
-  { icon: Clock, label: "Atencion personalizada", value: "24/7" },
-]
+  { icon: Heart, label: "Familias felices", value: "+5000" },
+  { icon: Award, label: "Años de experiencia", value: "20" },
+  { icon: Clock, value: "Atencion", label: "Personalizada" },
+];
 
 export default function NosotrosPage() {
   return (
@@ -28,10 +27,14 @@ export default function NosotrosPage() {
             {"Creamos muebles con amor para los mas pequeños"}
           </h1>
           <p className="mt-6 leading-relaxed text-muted-foreground">
-            {"En Cunita Bebe creemos que los primeros años de vida merecen un entorno lleno de belleza, seguridad y calidez. Desde hace mas de una decada, nos dedicamos a diseñar y fabricar muebles infantiles que combinan estetica moderna con la mas alta calidad."}
+            {
+              "En LoreCunas creemos que los primeros años de vida merecen un entorno lleno de belleza, seguridad y calidez. Desde hace mas de dos decadas, nos dedicamos a diseñar y fabricar muebles infantiles que combinan estetica moderna con la mas alta calidad."
+            }
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            {"Cada pieza es pensada con dedicacion, utilizando materiales premium y terminaciones cuidadas. Nuestro equipo de artesanos trabaja con pasion para que cada familia encuentre el mueble perfecto para la habitacion de su bebe."}
+            {
+              "Cada pieza es pensada con dedicacion, utilizando materiales premium y terminaciones cuidadas. Nuestro equipo de artesanos trabaja con pasion para que cada familia encuentre el mueble perfecto para la habitacion de su bebe."
+            }
           </p>
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
@@ -46,7 +49,7 @@ export default function NosotrosPage() {
       </div>
 
       {/* Stats */}
-      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -69,7 +72,7 @@ export default function NosotrosPage() {
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {[
             {
-              title: "Calidad sin compromiso",
+              title: "Calidad premium",
               description:
                 "Cada mueble esta fabricado con los mejores materiales, asegurando durabilidad y seguridad.",
             },
@@ -99,5 +102,5 @@ export default function NosotrosPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

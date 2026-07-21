@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart, Instagram, Facebook, Mail } from "lucide-react";
+import { Heart, Instagram, Facebook, Mail, Music2Icon } from "lucide-react";
 
 export function Footer() {
   return (
@@ -20,7 +20,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/lorecunas"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
@@ -29,7 +29,7 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100064492640082 "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
@@ -38,11 +38,12 @@ export function Footer() {
                 <Facebook className="h-4 w-4" />
               </a>
               <a
-                href="mailto:info@cunitabebe.com"
+                href="https://www.tiktok.com/@lorecunasfuncionales"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
-                aria-label="Email"
+                aria-label="Tiktok"
+                target="_blank"
               >
-                <Mail className="h-4 w-4" />
+                <Music2Icon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -59,14 +60,6 @@ export function Footer() {
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Catalogo completo
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/categorias"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                >
-                  Categorias
                 </Link>
               </li>
               <li>
@@ -127,18 +120,18 @@ export function Footer() {
               Contacto
             </h3>
             <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <li>Buenos Aires, Argentina</li>
-              <li>Tel: +54 11 1234-5678</li>
-              <li>info@cunitabebe.com</li>
-              <li className="pt-1">Lun a Vie: 9:00 - 18:00</li>
-              <li>Sab: 10:00 - 14:00</li>
+              <li>Moreno, Paso del Rey</li>
+               <li>Provincia de Buenos Aires</li>
+              <li>Tel: +54 11 6939-3427</li>
+              <li className="pt-1">Mie a Vie: 14:30 - 18:00</li>
+              <li>Sab: 09:00 - 13:00</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
           <p>
-            &copy; {new Date().getFullYear()} Cunita Bebe. Todos los derechos
+            &copy; {new Date().getFullYear()} LoreCunas. Todos los derechos
             reservados.
           </p>
         </div>

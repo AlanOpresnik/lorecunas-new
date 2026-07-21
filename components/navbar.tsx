@@ -19,9 +19,9 @@ import Image from "next/image";
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/catalogo", label: "Catalogo" },
-  { href: "/catalogo?categoria=lorecunas-home", label: "Lorecunas Home" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/preguntas-frecuentes", label: "FAQ" },
+  { href: "/preguntas-frecuentes", label: "Preguntas Frecuentes" },
+    { href: "/ubication", label: "Donde nos ubicamos" },
 ];
 
 export function Navbar() {
