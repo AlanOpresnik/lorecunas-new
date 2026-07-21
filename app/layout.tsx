@@ -5,11 +5,25 @@ import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper/LayoutWrapper";
 
 export const metadata: Metadata = {
-  title: "Cunita Bebe | Muebles Infantiles Premium",
+  metadataBase: new URL("https://www.lorecunas.com.ar"),
+  title: "LoreCunas | Muebles Infantiles",
   description:
-    "Muebleria especializada en muebles infantiles para bebes. Cunas funcionales, roperos, comodas y decoracion para la habitacion de tu bebe.",
+    "FABRICACION ARGENTINA · ENVIOS 100% SEGUROS · LOS MEJORES PRECIOS. Precios mayoristas para vos. Imagen de fondo. Accesorios. para dormitorios.",
+  openGraph: {
+    title: "LoreCunas | Muebles Infantiles",
+    description:
+      "FABRICACION ARGENTINA · ENVIOS 100% SEGUROS · LOS MEJORES PRECIOS. Precios mayoristas para vos. Imagen de fondo. Accesorios. para dormitorios.",
+    url: "https://www.lorecunas.com.ar",
+    siteName: "LoreCunas",
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LoreCunas | Muebles Infantiles",
+    description: "Mueblería especializada en muebles infantiles para bebés.",
+  },
 };
-
 export default function RootLayout({
   children,
 }: {
