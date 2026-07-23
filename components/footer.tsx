@@ -120,7 +120,7 @@ export function Footer() {
               Contacto
             </h3>
             <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <li>Moreno, Paso del Rey</li>
+              <li>Puente Marquez 980, Paso del Rey, Moreno</li>
                <li>Provincia de Buenos Aires</li>
               <li>Tel: +54 11 6939-3427</li>
               <li className="pt-1">Mie a Vie: 14:30 - 18:00</li>

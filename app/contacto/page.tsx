@@ -30,7 +30,7 @@ export default function ContactoPage() {
             <div>
               <h3 className="font-serif font-bold text-card-foreground">Direccion</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Buenos Aires, Argentina
+               Puente Marquez 980, Paso del Rey, Moreno
               </p>
             </div>
           </div>
@@ -41,17 +41,7 @@ export default function ContactoPage() {
             </div>
             <div>
               <h3 className="font-serif font-bold text-card-foreground">Telefono</h3>
-              <p className="mt-1 text-sm text-muted-foreground">+54 11 1234-5678</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Mail className="h-5 w-5" />
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-card-foreground">Email</h3>
-              <p className="mt-1 text-sm text-muted-foreground">info@cunitabebe.com</p>
+              <p className="mt-1 text-sm text-muted-foreground">+54 9 11 6939 3427</p>
             </div>
           </div>
 
@@ -62,17 +52,17 @@ export default function ContactoPage() {
             <div>
               <h3 className="font-serif font-bold text-card-foreground">Horarios</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Lunes a Viernes: 9:00 - 18:00
+                Miercoles a Viernes: 14:30 - 18:00
               </p>
               <p className="text-sm text-muted-foreground">
-                Sabados: 10:00 - 14:00
+                Sabados: 09:00 - 13:00
               </p>
             </div>
           </div>
 
           <Button asChild size="lg" className="w-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
             <a
-              href="https://wa.me/5491112345678?text=Hola!%20Me%20gustaria%20consultar%20sobre%20sus%20muebles."
+              href="https://wa.me/5491169393427?text=Hola!%20Me%20gustaria%20consultar%20sobre%20sus%20muebles."
               target="_blank"
               rel="noopener noreferrer"
             >
