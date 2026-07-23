@@ -73,7 +73,7 @@ export async function ProductDetail({ params }: Props) {
                   Precio con tarjeta
                 </span>
                 <span className="font-semibold text-foreground">
-                  {formatPrice(product.originalPrice)}
+                  {product.originalPrice}
                 </span>
               </div>
             )}
