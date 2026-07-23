@@ -12,7 +12,7 @@ export function ProductPricingFields({
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
       <Field data-invalid={errors.price ? true : undefined}>
-        <FieldLabel htmlFor="price">Precio (ARS)</FieldLabel>
+        <FieldLabel htmlFor="price">Precio CONTADO</FieldLabel>
         <Input
           id="price"
           name="price"
@@ -31,8 +31,7 @@ export function ProductPricingFields({
         <Input
           id="originalPrice"
           name="originalPrice"
-          type="number"
-          min={0}
+          type="text"
           defaultValue={product?.originalPrice}
           placeholder="0"
           aria-invalid={errors.originalPrice ? true : undefined}
