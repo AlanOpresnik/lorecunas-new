@@ -57,14 +57,25 @@ export async function ProductDetail({ params }: Props) {
             {product.name}
           </h1>
 
-          <div className="mt-4 flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-foreground">
-              {formatPrice(product.price)}
-            </span>
-            {product.originalPrice && (
-              <span className="text-lg text-muted-foreground line-through">
-                {formatPrice(product.originalPrice)}
+          <div className="mt-4 flex flex-col gap-2">
+            <div className="flex items-end gap-2">
+              <span className="text-3xl font-bold tracking-tight text-foreground">
+                {formatPrice(product.price)}
               </span>
+              <span className="pb-1 text-sm text-muted-foreground">
+                Contado
+              </span>
+            </div>
+
+            {product.originalPrice && (
+              <div className="inline-flex w-fit items-center gap-2 rounded-lg border border-muted bg-muted/40 px-3 py-2">
+                <span className="text-sm text-muted-foreground">
+                  Precio con tarjeta
+                </span>
+                <span className="font-semibold text-foreground">
+                  {formatPrice(product.originalPrice)}
+                </span>
+              </div>
             )}
           </div>
 
@@ -97,10 +108,12 @@ export async function ProductDetail({ params }: Props) {
         </div>
       </div>
 
-      {product.videoUrl ? <ProductVideoPlayer videoUrl={product.videoUrl} /> : null}
+      {product.videoUrl ? (
+        <ProductVideoPlayer videoUrl={product.videoUrl} />
+      ) : null}
 
       <div>
-        <RelatedProducts categorySlug={product.category}/>
+        <RelatedProducts categorySlug={product.category} />
       </div>
     </div>
   );

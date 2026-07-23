@@ -27,7 +27,7 @@ export function ProductPricingFields({
       </Field>
 
       <Field data-invalid={errors.originalPrice ? true : undefined}>
-        <FieldLabel htmlFor="originalPrice">Precio original (opcional)</FieldLabel>
+        <FieldLabel htmlFor="originalPrice">Precio con tarjeta</FieldLabel>
         <Input
           id="originalPrice"
           name="originalPrice"

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LoreCunas | Muebles Infantiles",
+    title: "LoreCunas | Muebles Infantiles  ",
     description: "Mueblería especializada en muebles infantiles para bebés.",
   },
 };
