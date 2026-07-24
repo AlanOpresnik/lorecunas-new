@@ -26,17 +26,6 @@ export function ProductCard({ product }: ProductCardProps) {
             Nuevo
           </span>
         )}
-        {product.originalPrice && (
-          <span className="absolute right-3 top-3 rounded-full bg-destructive/10 px-3 py-1 text-xs font-semibold text-destructive">
-            -
-            {Math.round(
-              ((product.originalPrice - product.price) /
-                product.originalPrice) *
-                100,
-            )}
-            %
-          </span>
-        )}
       </div>
       <div className="flex flex-1 flex-col gap-1 p-4">
         <p className="text-primary text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -48,16 +37,14 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
           {product.shortDescription}
         </p>
+        
         <div className="mt-auto flex items-baseline gap-2 pt-3">
           <span className="text-lg font-bold text-foreground">
             {formatPrice(product.price)}
           </span>
-          {product.originalPrice && (
-            <span className="text-sm text-muted-foreground line-through">
-              {formatPrice(product.originalPrice)}
-            </span>
-          )}
+     
         </div>
+        
       </div>
     </Link>
   );
