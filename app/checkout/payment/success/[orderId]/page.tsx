@@ -16,7 +16,7 @@ export default async function PaymentSuccessPage({
     return <div>No se encontró el preference_id.</div>;
   }
 
-console.log(preference_id)
+  console.log(preference_id);
 
   const order = await api.getOrderByPreferenceId(preference_id);
 

@@ -23,17 +23,28 @@ const config: Record<
   },
 }
 
-export function PaymentStatusBadge({ status }: { status: PaymentStatus }) {
-  const { label, icon: Icon, className } = config[status]
+export function PaymentStatusBadge({ status }: { status: PaymentStatus | string }) {
+  const item = config[status as PaymentStatus];
+
+  if (!item) {
+    return (
+      <span className="inline-flex rounded-full border px-2.5 py-1 text-xs">
+        {status ?? "Sin estado"}
+      </span>
+    );
+  }
+
+  const { label, icon: Icon, className } = item;
+
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium',
-        className,
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
+        className
       )}
     >
       <Icon className="size-3.5" />
       {label}
     </span>
-  )
+  );
 }
